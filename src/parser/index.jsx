@@ -30,6 +30,7 @@ import { HeroStateProvider } from '../components/HeroTabContext';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Pricing from '../components/Pricing';
+import Services from '../components/Services';
 
 export function parseHTMLWithAnimations(htmlString) {
   const replaceNode = (domNode, isInsideFAQ = false) => {
@@ -57,6 +58,12 @@ export function parseHTMLWithAnimations(htmlString) {
     // preserving its existing Framer subtree and child replacement behavior.
     if (domNode.name === 'section' && domNode.attribs.id === 'pricing' && domNode.attribs['data-framer-name'] === 'Pricing') {
       return <Pricing domNode={domNode} replaceNode={replaceNode} />;
+    }
+
+    // Phase 2: render the Services section as a real React component while
+    // preserving its existing Framer subtree and child replacement behavior.
+    if (domNode.name === 'section' && domNode.attribs.id === 'services' && domNode.attribs['data-framer-name'] === 'Features') {
+      return <Services domNode={domNode} replaceNode={replaceNode} />;
     }
 
     // Phase 2: render the Header as a real React component instead of routing
