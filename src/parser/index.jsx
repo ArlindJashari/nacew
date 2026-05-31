@@ -29,6 +29,7 @@ import {
 import SpatialMockup from '../components/SpatialMockup';
 import { HeroStateProvider } from '../components/HeroTabContext';
 import Footer from '../components/Footer';
+import Pricing from '../components/Pricing';
 
 export function parseHTMLWithAnimations(htmlString) {
   const replaceNode = (domNode, isInsideFAQ = false) => {
@@ -50,6 +51,12 @@ export function parseHTMLWithAnimations(htmlString) {
     // the footer markup from the HTML string. Output is pixel-identical.
     if (domNode.name === 'footer' && domNode.attribs['data-framer-name'] === 'Footer') {
       return <Footer />;
+    }
+
+    // Phase 2: render the Pricing section as a real React component while
+    // preserving its existing Framer subtree and child replacement behavior.
+    if (domNode.name === 'section' && domNode.attribs.id === 'pricing' && domNode.attribs['data-framer-name'] === 'Pricing') {
+      return <Pricing domNode={domNode} replaceNode={replaceNode} />;
     }
 
     // Intercept Intro section to append falling physics tags
