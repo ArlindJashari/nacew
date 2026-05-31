@@ -32,6 +32,7 @@ import Footer from '../components/Footer';
 import Pricing from '../components/Pricing';
 import Services from '../components/Services';
 import WhatYouGet from '../components/WhatYouGet';
+import Hero from '../components/Hero';
 
 export function parseHTMLWithAnimations(htmlString) {
   const replaceNode = (domNode, isInsideFAQ = false) => {
@@ -71,6 +72,12 @@ export function parseHTMLWithAnimations(htmlString) {
     // preserving its existing Framer subtree and child replacement behavior.
     if (domNode.name === 'section' && domNode.attribs.id === 'what-you-get' && domNode.attribs['data-framer-name'] === 'About') {
       return <WhatYouGet domNode={domNode} replaceNode={replaceNode} />;
+    }
+
+    // Phase 2: render the Hero section as a real React component while
+    // preserving its existing Framer subtree and child replacement behavior.
+    if (domNode.name === 'section' && domNode.attribs.id === 'hero' && domNode.attribs['data-framer-name'] === 'Hero') {
+      return <Hero domNode={domNode} replaceNode={replaceNode} />;
     }
 
     // Phase 2: render the Header as a real React component instead of routing
