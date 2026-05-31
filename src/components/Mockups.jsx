@@ -127,7 +127,7 @@ const ChatAppLayout = ({ title, sidebarNav, sidebarFolders, children, bgImage, i
                  Invite
                </div>
                <div style={{ width: '28px', height: '28px', borderRadius: '50%', background: '#444', overflow: 'hidden' }}>
-                 <img src="https://i.pravatar.cc/100?img=11" alt="avatar" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                 <img src="/avatar-placeholder.svg" alt="avatar" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                </div>
              </div>
 
