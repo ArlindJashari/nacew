@@ -82,22 +82,19 @@ export function parseHTMLWithAnimations(htmlString) {
       return <Footer />;
     }
 
-    // Phase 2: render the Pricing section as a real React component while
-    // preserving its existing Framer subtree and child replacement behavior.
+    // Phase 3C: Pricing is declarative; parser only detects its original mount.
     if (domNode.name === 'section' && domNode.attribs.id === 'pricing' && domNode.attribs['data-framer-name'] === 'Pricing') {
-      return <Pricing domNode={domNode} replaceNode={replaceNode} />;
+      return <Pricing />;
     }
 
-    // Phase 2: render the Services section as a real React component while
-    // preserving its existing Framer subtree and child replacement behavior.
+    // Phase 3C: Services is declarative; parser only detects its original mount.
     if (domNode.name === 'section' && domNode.attribs.id === 'services' && domNode.attribs['data-framer-name'] === 'Features') {
-      return <Services domNode={domNode} replaceNode={replaceNode} />;
+      return <Services />;
     }
 
-    // Phase 2: render the What-you-get section as a real React component while
-    // preserving its existing Framer subtree and child replacement behavior.
+    // Phase 3C: What-you-get is declarative; parser only detects its original mount.
     if (domNode.name === 'section' && domNode.attribs.id === 'what-you-get' && domNode.attribs['data-framer-name'] === 'About') {
-      return <WhatYouGet domNode={domNode} replaceNode={replaceNode} />;
+      return <WhatYouGet />;
     }
 
     // Phase 2: render the Hero section as a real React component while
