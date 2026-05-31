@@ -23,7 +23,6 @@ import {
   LeftArrowIconSvg,
   RightArrowIconSvg,
   InteractiveFeaturesSection,
-  FallingTextServices,
 } from './nodeReplacers';
 import SpatialMockup from '../components/SpatialMockup';
 import { HeroStateProvider } from '../components/HeroTabContext';
@@ -33,6 +32,7 @@ import Pricing from '../components/Pricing';
 import Services from '../components/Services';
 import WhatYouGet from '../components/WhatYouGet';
 import Hero from '../components/Hero';
+import Intro from '../components/Intro';
 
 export function parseHTMLWithAnimations(htmlString) {
   const replaceNode = (domNode, isInsideFAQ = false) => {
@@ -80,28 +80,17 @@ export function parseHTMLWithAnimations(htmlString) {
       return <Hero domNode={domNode} replaceNode={replaceNode} />;
     }
 
+    // Phase 2: render the Intro section as a real React component while
+    // preserving its existing Framer subtree and falling text layer.
+    if (domNode.name === 'section' && domNode.attribs.id === 'about' && domNode.attribs['data-framer-name'] === 'Intro') {
+      return <Intro domNode={domNode} replaceNode={replaceNode} />;
+    }
+
     // Phase 2: render the Header as a real React component instead of routing
     // the header shell directly from the parser.
     const className = domNode.attribs.class || '';
     if (className.includes('framer-1xw88z8-container')) {
       return <Header domNode={domNode} />;
-    }
-
-    // Intercept Intro section to append falling physics tags
-    if (domNode.attribs.id === 'about') {
-      const props = cleanProps(domNode.attribs);
-      props.style = props.style || {};
-      props.style.position = 'relative';
-      const options = {
-        replace: (childNode) => replaceNode(childNode, isInsideFAQ)
-      };
-
-      return (
-        <section {...props}>
-          {domNode.children && domNode.children.length > 0 ? domToReact(domNode.children, options) : null}
-          <FallingTextServices />
-        </section>
-      );
     }
 
     // 1. Fix Lazy Loaded Images
