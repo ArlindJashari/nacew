@@ -50,6 +50,32 @@ export function parseHTMLWithAnimations(htmlString) {
 
     if (!domNode.attribs) return;
 
+    // page.html is a full Framer-exported HTML document. Rendering its
+    // document-level wrappers (<html>/<head>/<body>) into React's #root <div>
+    // is invalid nesting and triggers hydration warnings. Unwrap <html>/<body>
+    // so only their content renders; <head> is empty in the export, so drop it.
+    if (domNode.name === 'html' || domNode.name === 'body') {
+      return (
+        <>
+          {domToReact(domNode.children, {
+            replace: (childNode) => replaceNode(childNode, isInsideFAQ),
+          })}
+        </>
+      );
+    }
+    if (domNode.name === 'head') {
+      return <></>;
+    }
+
+    // Dead Framer-CDN module preloads left over from the export. They preload
+    // Framer's own runtime (.mjs bundles) that this Vite app never executes,
+    // and carried an invalid lowercase `fetchpriority` attribute that React
+    // rejected. Drop them — no functional or visual effect. The Lenis
+    // stylesheet <link> is intentionally left intact; React 19 hoists it.
+    if (domNode.name === 'link' && domNode.attribs.rel === 'modulepreload') {
+      return <></>;
+    }
+
     // Phase 2: render the Footer as a real React component instead of parsing
     // the footer markup from the HTML string. Output is pixel-identical.
     if (domNode.name === 'footer' && domNode.attribs['data-framer-name'] === 'Footer') {
