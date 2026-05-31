@@ -18,6 +18,7 @@ dist-ssr
 .idea
 .claude
 scratch
+visual-baselines
 *.bak*
 *.bundle
 .DS_Store
