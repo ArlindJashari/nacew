@@ -112,11 +112,10 @@ export function parseHTMLWithAnimations(htmlString) {
       return <Intro domNode={domNode} replaceNode={replaceNode} />;
     }
 
-    // Phase 2: render the Header as a real React component instead of routing
-    // the header shell directly from the parser.
+    // Phase 3C: Header is declarative; parser only detects its original mount.
     const className = domNode.attribs.class || '';
     if (className.includes('framer-1xw88z8-container')) {
-      return <Header domNode={domNode} />;
+      return <Header />;
     }
 
     // 1. Fix Lazy Loaded Images
