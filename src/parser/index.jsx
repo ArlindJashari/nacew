@@ -102,10 +102,9 @@ export function parseHTMLWithAnimations(htmlString) {
       return <Hero />;
     }
 
-    // Phase 2: render the Intro section as a real React component while
-    // preserving its existing Framer subtree and falling text layer.
+    // Phase 3C: Intro is declarative; parser only detects its original mount.
     if (domNode.name === 'section' && domNode.attribs.id === 'about' && domNode.attribs['data-framer-name'] === 'Intro') {
-      return <Intro domNode={domNode} replaceNode={replaceNode} />;
+      return <Intro />;
     }
 
     // Phase 3C: Header is declarative; parser only detects its original mount.
