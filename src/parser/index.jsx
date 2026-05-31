@@ -22,12 +22,12 @@ import {
   ChevronIconSvg,
   LeftArrowIconSvg,
   RightArrowIconSvg,
-  NavigationShell,
   InteractiveFeaturesSection,
   FallingTextServices,
 } from './nodeReplacers';
 import SpatialMockup from '../components/SpatialMockup';
 import { HeroStateProvider } from '../components/HeroTabContext';
+import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Pricing from '../components/Pricing';
 
@@ -59,6 +59,13 @@ export function parseHTMLWithAnimations(htmlString) {
       return <Pricing domNode={domNode} replaceNode={replaceNode} />;
     }
 
+    // Phase 2: render the Header as a real React component instead of routing
+    // the header shell directly from the parser.
+    const className = domNode.attribs.class || '';
+    if (className.includes('framer-1xw88z8-container')) {
+      return <Header domNode={domNode} />;
+    }
+
     // Intercept Intro section to append falling physics tags
     if (domNode.attribs.id === 'about') {
       const props = cleanProps(domNode.attribs);
@@ -85,7 +92,6 @@ export function parseHTMLWithAnimations(htmlString) {
         }
       }
     }
-    const className = domNode.attribs.class || '';
     const hasAppearId = domNode.attribs['data-framer-appear-id'];
 
     if (className.includes('framer-c26lio')) {
@@ -106,10 +112,6 @@ export function parseHTMLWithAnimations(htmlString) {
 
     if (domNode.name === 'svg' && hasSvgUseReference(domNode, '2047441354')) {
       return <RightArrowIconSvg domNode={domNode} />;
-    }
-
-    if (className.includes('framer-1xw88z8-container')) {
-      return <NavigationShell domNode={domNode} replaceNode={replaceNode} />;
     }
 
     if (
