@@ -28,6 +28,7 @@ import {
 } from './nodeReplacers';
 import SpatialMockup from '../components/SpatialMockup';
 import { HeroStateProvider } from '../components/HeroTabContext';
+import Footer from '../components/Footer';
 
 export function parseHTMLWithAnimations(htmlString) {
   const replaceNode = (domNode, isInsideFAQ = false) => {
@@ -44,6 +45,12 @@ export function parseHTMLWithAnimations(htmlString) {
     }
 
     if (!domNode.attribs) return;
+
+    // Phase 2: render the Footer as a real React component instead of parsing
+    // the footer markup from the HTML string. Output is pixel-identical.
+    if (domNode.name === 'footer' && domNode.attribs['data-framer-name'] === 'Footer') {
+      return <Footer />;
+    }
 
     // Intercept Intro section to append falling physics tags
     if (domNode.attribs.id === 'about') {
