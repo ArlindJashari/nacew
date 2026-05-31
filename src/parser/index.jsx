@@ -97,10 +97,9 @@ export function parseHTMLWithAnimations(htmlString) {
       return <WhatYouGet />;
     }
 
-    // Phase 2: render the Hero section as a real React component while
-    // preserving its existing Framer subtree and child replacement behavior.
+    // Phase 3C: Hero is declarative; parser only detects its original mount.
     if (domNode.name === 'section' && domNode.attribs.id === 'hero' && domNode.attribs['data-framer-name'] === 'Hero') {
-      return <Hero domNode={domNode} replaceNode={replaceNode} />;
+      return <Hero />;
     }
 
     // Phase 2: render the Intro section as a real React component while
