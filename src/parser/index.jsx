@@ -36,6 +36,7 @@ import WhatYouGet from '../components/WhatYouGet';
 import Hero from '../components/Hero';
 import Intro from '../components/Intro';
 import FAQ from '../components/FAQ';
+import CTA from '../components/CTA';
 
 export function parseHTMLWithAnimations(htmlString) {
   const replaceNode = (domNode, isInsideFAQ = false) => {
@@ -113,6 +114,11 @@ export function parseHTMLWithAnimations(htmlString) {
     // Final cleanup: FAQ is declarative; parser only detects its original mount.
     if (domNode.name === 'section' && domNode.attribs['data-framer-name'] === 'FAQ') {
       return <FAQ />;
+    }
+
+    // Final cleanup: CTA is declarative; parser only detects its original mount.
+    if (domNode.name === 'section' && domNode.attribs['data-framer-name'] === 'CTA') {
+      return <CTA />;
     }
 
     // Phase 3C: Header is declarative; parser only detects its original mount.
