@@ -59,7 +59,7 @@ export default function App() {
           <Header />
           <div
             className="framer-pAcom framer-eMoyh framer-knjRQ framer-9C3FS framer-gF1Dm framer-tz6Zq framer-cqiiB framer-kj696b"
-            style={{ minHeight: '100vh', width: 'auto' }}
+            style={{ minHeight: '100vh', width: '100%' }}
           >
             <Hero />
             <Intro />
