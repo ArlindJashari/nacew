@@ -35,6 +35,7 @@ import Services from '../components/Services';
 import WhatYouGet from '../components/WhatYouGet';
 import Hero from '../components/Hero';
 import Intro from '../components/Intro';
+import FAQ from '../components/FAQ';
 
 export function parseHTMLWithAnimations(htmlString) {
   const replaceNode = (domNode, isInsideFAQ = false) => {
@@ -107,6 +108,11 @@ export function parseHTMLWithAnimations(htmlString) {
     // Phase 3C: Intro is declarative; parser only detects its original mount.
     if (domNode.name === 'section' && domNode.attribs.id === 'about' && domNode.attribs['data-framer-name'] === 'Intro') {
       return <Intro />;
+    }
+
+    // Final cleanup: FAQ is declarative; parser only detects its original mount.
+    if (domNode.name === 'section' && domNode.attribs['data-framer-name'] === 'FAQ') {
+      return <FAQ />;
     }
 
     // Phase 3C: Header is declarative; parser only detects its original mount.
