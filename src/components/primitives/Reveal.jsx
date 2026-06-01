@@ -1,11 +1,10 @@
-// Reveal — declarative replacement for the parser's generic appear animation
-// (see the motion.div block in src/parser/index.jsx). An element that ships
-// with opacity:0 + a transform offset is hidden initially, then springs into
-// place the first time it scrolls into view. This is the primitive that lets a
-// converted section drop its `opacity:0` markup without the content staying
-// invisible.
+// Reveal — declarative replacement for Framer's generic appear animation. An
+// element that ships with opacity:0 + a transform offset is hidden initially,
+// then springs into place the first time it scrolls into view. This is the
+// primitive that lets a converted section drop its `opacity:0` markup without
+// the content staying invisible.
 //
-// Defaults mirror the parser exactly: spring (stiffness 90, damping 20,
+// Defaults mirror the original appear behavior: spring (stiffness 90, damping 20,
 // mass 0.8), viewport once with a -120px margin, and a standard 30px upward
 // slide when no explicit offset is given.
 import { motion } from 'framer-motion';

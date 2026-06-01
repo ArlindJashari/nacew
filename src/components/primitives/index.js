@@ -1,7 +1,5 @@
-// Framer-replacement primitives. These recreate the parser's runtime behavior
-// as declarative React so sections can be converted off page.html/the parser
-// without losing reveals, parallax, spotlight text, or icons. See
-// docs/parser-behavior-map.md for the full behavior -> primitive mapping.
+// Framer-replacement primitives. These recreate the legacy runtime behavior as
+// declarative React without losing reveals, parallax, spotlight text, or icons.
 
 export { default as Reveal } from './Reveal.jsx';
 export { default as ScrollRevealBlock } from './ScrollRevealBlock.jsx';

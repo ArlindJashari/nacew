@@ -1,8 +1,6 @@
-// InlineIcon — declarative replacement for the parser's SVG <use> icon swaps
-// (CheckIconSvg / ChevronIconSvg / LeftArrowIconSvg / RightArrowIconSvg in
-// src/parser/nodeReplacers.jsx). Same 24x24 viewBox, paths, stroke vars and
-// default token colors, so converted markup keeps identical icons without
-// depending on the Framer <symbol> sprite in page.html.
+// InlineIcon — declarative replacement for Framer's SVG <use> icon sprites.
+// Same 24x24 viewBox, paths, stroke vars and default token colors, so converted
+// markup keeps identical icons without depending on the exported symbol sheet.
 
 const PATHS = {
   check: 'M20 6 9 17l-5-5',
@@ -11,7 +9,7 @@ const PATHS = {
   arrowRight: 'M9 5l7 7-7 7',
 };
 
-// Default stroke color tokens, matching the parser's per-icon defaults.
+// Default stroke color tokens, matching the original exported icon defaults.
 const DEFAULT_COLOR = {
   check: 'var(--token-090acfc6-f7ee-4bf4-9b69-0b15cf2cb187, rgb(255, 243, 240))',
   chevron: 'var(--token-c6de8ea4-3684-4c2f-917e-fc3d1879d6b0, rgba(255, 255, 255, 0.65))',
