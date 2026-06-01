@@ -1,10 +1,12 @@
 // Runtime HTML -> React parser. Walks the Framer-exported markup string and
-// replaces specific nodes with the interactive components in ./nodeReplacers,
-// ./animations and the spatial mockup (extracted verbatim — logic unchanged).
+// replaces specific nodes with interactive components while legacy FAQ/CTA
+// content still comes from the Framer export.
 import parse, { domToReact } from 'html-react-parser';
 import { motion } from 'framer-motion';
 import { cleanProps } from './props';
-import { ParallaxElement, ScrollSpotlightText, ScrollRevealBlock } from './animations';
+import ParallaxElement from '../components/primitives/ParallaxLayer';
+import ScrollSpotlightText from '../components/primitives/SpotlightText';
+import ScrollRevealBlock from '../components/primitives/ScrollRevealBlock';
 import {
   renderNacewNavLogo,
   getHeroLayerAsset,

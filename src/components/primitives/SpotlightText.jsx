@@ -1,5 +1,26 @@
-// SpotlightText — re-exported from src/parser/animations.jsx
-// (ScrollSpotlightText: opacity tracks scroll progress through the element,
-// 0.25 -> 0.99 -> 0.25). Used by Intro/About's spotlight headline. Folds into
-// this file when the parser is removed.
-export { ScrollSpotlightText as default } from '../../parser/animations.jsx';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+
+export default function SpotlightText({ children, ...props }) {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start 82%', 'end 18%'],
+  });
+  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.25, 0.99, 0.25]);
+
+  const style = { ...(props.style || {}) };
+  delete style.opacity;
+  delete style.transform;
+  delete style.willChange;
+
+  return (
+    <motion.div
+      {...props}
+      ref={ref}
+      style={{ ...style, opacity, transform: 'none', willChange: 'transform' }}
+    >
+      {children}
+    </motion.div>
+  );
+}

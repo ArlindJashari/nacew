@@ -1,11 +1,12 @@
 // Framer-DOM node replacers: components the parser swaps in for specific
 // Framer nodes, plus their glow / svg / FAQ / hero helpers and data constants
 // (extracted verbatim from FramerMotionHTMLParser.jsx — logic unchanged).
+/* eslint-disable react-refresh/only-export-components */
 import { useEffect, useRef, useState, useContext } from 'react';
 import { domToReact } from 'html-react-parser';
 import { motion } from 'framer-motion';
 import { cleanProps, getNodeText } from './props';
-import { ParallaxElement } from './animations';
+import ParallaxElement from '../components/primitives/ParallaxLayer';
 import { CrmMockup, InternalToolsMockup, AppsMockup, AutomationsMockup } from '../components/Mockups';
 import { HeroTabContext } from '../components/HeroTabContext';
 import FallingText from '../components/FallingText';
@@ -935,7 +936,7 @@ function RightArrowIconSvg({ domNode }) {
   );
 }
 
-function NavigationShell({ domNode, replaceNode }) {
+function NavigationShell({ domNode }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrollBackdropOpacity, setScrollBackdropOpacity] = useState(0);
   const isDarkSection = scrollBackdropOpacity > 0.32;

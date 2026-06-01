@@ -1,5 +1,23 @@
-// ParallaxLayer — re-exported from src/parser/animations.jsx
-// (ParallaxElement: translates a layer on scroll by scrollY * factor). Used by
-// the hero background/landscape layers. Folds into this file when the parser
-// is removed.
-export { ParallaxElement as default } from '../../parser/animations.jsx';
+import { motion, useScroll, useTransform } from 'framer-motion';
+
+export default function ParallaxLayer({ children, factor, ...props }) {
+  const { scrollY } = useScroll();
+  const y = useTransform(scrollY, (value) => value * factor);
+
+  const sanitizedProps = { ...props };
+  if (sanitizedProps.style) {
+    sanitizedProps.style = { ...sanitizedProps.style };
+    delete sanitizedProps.style.opacity;
+    delete sanitizedProps.style.transform;
+    delete sanitizedProps.style.willChange;
+  }
+
+  return (
+    <motion.div
+      {...sanitizedProps}
+      style={{ ...sanitizedProps.style, opacity: 1, y, willChange: 'transform' }}
+    >
+      {children}
+    </motion.div>
+  );
+}
