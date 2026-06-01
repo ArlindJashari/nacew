@@ -217,7 +217,7 @@ function LandscapeLayer({ layer }) {
 function HeroMockup({ mobile = false }) {
   const className = mobile
     ? 'framer-rE0XJ framer-knjRQ framer-cqiiB framer-gF1Dm framer-dqdt72 framer-v-1p49zuq'
-    : 'framer-rE0XJ framer-knjRQ framer-cqiiB framer-gF1Dm framer-dqdt72 framer-v-1htl2y6';
+    : 'framer-rE0XJ framer-knjRQ framer-cqiiB framer-gF1Dm framer-dqdt72 framer-v-dqdt72';
 
   return (
     <ParallaxLayer
