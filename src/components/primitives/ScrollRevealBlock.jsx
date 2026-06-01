@@ -1,6 +1,21 @@
-// ScrollRevealBlock — re-exported from the proven implementation in
-// src/parser/animations.jsx (fade + 24px rise, whileInView once). Surfaced
-// here so converted sections import reveal behavior from the primitives
-// library rather than from the parser. When the parser is eventually removed,
-// the implementation moves into this file unchanged.
-export { ScrollRevealBlock as default } from '../../parser/animations.jsx';
+import { motion } from 'framer-motion';
+
+export default function ScrollRevealBlock({ children, delay = 0, ...props }) {
+  const style = { ...(props.style || {}) };
+  delete style.opacity;
+  delete style.transform;
+  delete style.willChange;
+
+  return (
+    <motion.div
+      {...props}
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.18, margin: '0px 0px -80px 0px' }}
+      transition={{ duration: 0.8, delay, ease: [0.16, 1, 0.3, 1] }}
+      style={{ ...style, willChange: 'transform' }}
+    >
+      {children}
+    </motion.div>
+  );
+}
