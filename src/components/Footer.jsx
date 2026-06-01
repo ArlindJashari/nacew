@@ -81,7 +81,7 @@ export default function Footer() {
         <div className="framer-70az75" />
         <div className="framer-dtf6w2">
           <div className="framer-lt1zyc" data-framer-component-type="RichTextContainer" style={{ transform: "none" }}><p className="framer-text framer-styles-preset-10qv886" data-styles-preset="dvE5DE7ca" dir="auto" style={{ "--framer-text-color": "var(--token-c6de8ea4-3684-4c2f-917e-fc3d1879d6b0, rgba(255, 255, 255, 0.65))" }}>© 2026 Nacew. All rights reserved.</p></div>
-          <div className="framer-gaqks3"><div className="framer-8j3hvm" data-framer-component-type="RichTextContainer" style={{ willChange: "transform", opacity: "0", transform: "translateY(24px)" }}><p className="framer-text framer-styles-preset-1fhxhj6" data-styles-preset="O0790qsZT" dir="auto"><a className="framer-text framer-styles-preset-v2iiak" data-styles-preset="Bh7brll6H" href="mailto:contact@nacew.com" rel="noopener">contact@nacew.com</a></p></div></div>
+          <div className="framer-gaqks3"><div className="framer-8j3hvm" data-framer-component-type="RichTextContainer" style={{ transform: "none" }}><p className="framer-text framer-styles-preset-1fhxhj6" data-styles-preset="O0790qsZT" dir="auto"><a className="framer-text framer-styles-preset-v2iiak" data-styles-preset="Bh7brll6H" href="mailto:contact@nacew.com" rel="noopener">contact@nacew.com</a></p></div></div>
         </div>
       </div>
     </footer>
