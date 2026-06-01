@@ -1,7 +1,7 @@
 # Visual regression tooling
 
-Section-level screenshot baselines + diffs, used as a safety net before
-converting parser/`page.html`-driven sections to declarative React.
+Section-level screenshot baselines + diffs, used as a safety net when changing
+declarative React sections.
 
 Playwright and the diff libs are **not** project dependencies — install them
 on demand (they are only needed when running these scripts):

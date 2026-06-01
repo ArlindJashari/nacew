@@ -1,6 +1,6 @@
 // MotionWrapper — thin framer-motion passthrough that also strips the static
 // opacity/transform/will-change that Framer bakes into exported markup (the
-// parser does the same before handing control to Framer Motion). Use it when a
+// old runtime did the same before handing control to Framer Motion). Use it when a
 // converted element needs custom motion props but no scroll-reveal default.
 import { motion } from 'framer-motion';
 

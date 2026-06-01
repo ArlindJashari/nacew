@@ -1,7 +1,7 @@
 // Footer — declarative React. Link data lives in the arrays below and is
 // rendered through small helpers; the surrounding markup mirrors the original
 // Framer-export classes/styles so the existing CSS in src/index.css renders it
-// unchanged. No dependency on src/content/page.html or the runtime parser.
+// unchanged.
 
 const PRODUCT_LINKS = [
   { cls: 'framer-1v0ps5u', href: './#about', label: 'Approach' },
