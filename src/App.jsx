@@ -57,12 +57,19 @@ export default function App() {
             <link href="https://unpkg.com/lenis@1.3.19/dist/lenis.css" rel="stylesheet" />
           </div>
           <Header />
-          <Hero />
-          <Intro />
-          <Services />
-          <WhatYouGet />
-          <Pricing />
-          <FAQ />
+          <div
+            className="framer-pAcom framer-eMoyh framer-knjRQ framer-9C3FS framer-gF1Dm framer-tz6Zq framer-cqiiB framer-kj696b"
+            style={{ minHeight: '100vh', width: 'auto' }}
+          >
+            <Hero />
+            <Intro />
+            <Services />
+            <WhatYouGet />
+            <Pricing />
+            <FAQ />
+          </div>
+          <div id="overlay" />
+          <div className="framer-129qs0a" />
           <CTA />
           <Footer />
         </div>
