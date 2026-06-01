@@ -40,7 +40,7 @@ export default function App() {
     <HeroStateProvider>
       <div
         id="main"
-        data-framer-hydrate-v2='{"routeId":"jOgyCWBcf","localeId":"default","breakpoints":[{"hash":"k7b1cf","mediaQuery":"(min-width: 1440px)"},{"hash":"1t24cya","mediaQuery":"(min-width: 1024px) and (max-width: 1439.98px)"},{"hash":"65kzqc","mediaQuery":"(min-width: 810px) and (max-width: 1023.98px)"},{"hash":"4dcyrn","mediaQuery":"(max-width: 809.98px)"}]}'
+        data-framer-hydrate-v2='{"routeId":"jOgyCWBcf","localeId":"default","breakpoints":[{"hash":"kj696b","mediaQuery":"(min-width: 1280px)"},{"hash":"3job37","mediaQuery":"(min-width: 810px) and (max-width: 1279.98px)"},{"hash":"nzvz5l","mediaQuery":"(max-width: 809.98px)"},{"hash":"1t24cya","mediaQuery":"(min-width: 1280px)"},{"hash":"65kzqc","mediaQuery":"(min-width: 810px) and (max-width: 1279.98px)"},{"hash":"k7b1cf","mediaQuery":"(max-width: 809.98px)"}]}'
         data-framer-ssr-released-at="2026-05-07T11:49:57.802Z"
         data-framer-page-optimized-at="2026-05-17T14:14:27.918Z"
         data-framer-generated-page=""
