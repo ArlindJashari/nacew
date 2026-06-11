@@ -10,7 +10,7 @@ const ICONS = {
 
 export const FOOTER_LINKS = [
   { label: "Platforms", href: "./#why-nacew" },
-  { label: "About", href: "/about2/#home" },
+  { label: "About", href: "/about" },
   { label: "Use Cases", href: "./#what-you-get" },
   { label: "Testimonials", href: "./#testimonials" },
   { label: "FAQ", href: "./#faq" },

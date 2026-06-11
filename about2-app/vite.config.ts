@@ -7,7 +7,7 @@ const root = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
   plugins: [react()],
-  base: "/about2/",
+  base: "/about/",
   root,
   resolve: {
     alias: {

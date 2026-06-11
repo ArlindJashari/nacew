@@ -39,7 +39,7 @@ export function Footer() {
       <div className="branch-footer-glow-8" aria-hidden />
 
       <div className="branch-footer-logo-wrap">
-        <a href="#home" aria-label="Nacew home">
+        <a href={import.meta.env.BASE_URL} aria-label="Nacew about">
           <img
             alt="Nacew Logo"
             loading="lazy"
