@@ -25,24 +25,32 @@ if (!fs.existsSync(homepageDist)) {
 
 execSync('node scripts/guard-homepage-dist.mjs', { cwd: nacewRoot, stdio: 'inherit' });
 
+function resolveAssetCaseInsensitive(assetsDir, filename) {
+  const onDisk = fs
+    .readdirSync(assetsDir)
+    .find((name) => name.toLowerCase() === filename.toLowerCase());
+  return onDisk ? path.join(assetsDir, onDisk) : null;
+}
+
 function assertNetlifyHomepage(targetRoot) {
   const indexPath = path.join(targetRoot, 'index.html');
   const html = fs.readFileSync(indexPath, 'utf8');
+  const assetsDir = path.join(targetRoot, 'assets');
 
-  if (!html.includes(HOMEPAGE_JS)) {
+  if (!html.toLowerCase().includes(HOMEPAGE_JS.toLowerCase())) {
     throw new Error(
       `Homepage guard: index.html must reference ${HOMEPAGE_JS}. ` +
         'Never deploy vite dist/ — it replaces the Netlify homepage.',
     );
   }
 
-  if (!html.includes(HOMEPAGE_CSS)) {
+  if (!html.toLowerCase().includes(HOMEPAGE_CSS.toLowerCase())) {
     throw new Error(`Homepage guard: index.html must reference ${HOMEPAGE_CSS}.`);
   }
 
-  const jsPath = path.join(targetRoot, 'assets', HOMEPAGE_JS);
-  const cssPath = path.join(targetRoot, 'assets', HOMEPAGE_CSS);
-  if (!fs.existsSync(jsPath) || !fs.existsSync(cssPath)) {
+  const jsPath = resolveAssetCaseInsensitive(assetsDir, HOMEPAGE_JS);
+  const cssPath = resolveAssetCaseInsensitive(assetsDir, HOMEPAGE_CSS);
+  if (!jsPath || !cssPath) {
     throw new Error('Homepage guard: Netlify homepage assets missing from deploy folder.');
   }
 
