@@ -326,7 +326,7 @@ function MobileHeader({ isDarkSection, mobileOpen, setMobileOpen, scrollBackdrop
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrollBackdropOpacity, setScrollBackdropOpacity] = useState(0);
-  const isDarkSection = scrollBackdropOpacity > 0.32;
+  const isDarkSection = true;
 
   useEffect(() => {
     let frame = null;

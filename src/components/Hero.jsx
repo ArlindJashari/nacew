@@ -2,6 +2,8 @@ import { useContext } from 'react';
 import { ParallaxLayer, Reveal, SectionShell } from './primitives';
 import SpatialMockup from './SpatialMockup';
 import { HeroTabContext } from './HeroTabContext';
+import HeroGrainBackground, { useHeroGrainTab } from './HeroGrainBackground';
+import HeroAboutIntro from './HeroAboutIntro';
 
 const SIGNUP_URL = 'https://auth.nacew.com/signup';
 
@@ -274,9 +276,13 @@ function ForegroundTreesLayer() {
 }
 
 export default function Hero() {
+  const heroTab = useHeroGrainTab();
+
   return (
     <SectionShell className="framer-x2ps8j" data-border="true" data-framer-name="Hero" id="hero">
-      <Reveal className="framer-1ed9fxm" data-framer-name="bg gradient" />
+      <div className="framer-1ed9fxm" data-framer-name="bg gradient" data-hero-tab={heroTab}>
+        <HeroGrainBackground />
+      </div>
       <div className="ssr-variant">
         <LandscapeLayer layer={layers.far} />
       </div>
@@ -286,32 +292,7 @@ export default function Hero() {
       <div className="framer-1i5w2fk" data-framer-name="content">
         <div className="framer-3rmkn8" id="scroll">
           <div className="framer-1e2emgk">
-            <div className="framer-mc6oli">
-              <div className="framer-1gbackj">
-                <div className="framer-1oszaj3">
-                  <div className="ssr-variant">
-                    <HeroChip />
-                  </div>
-                </div>
-              </div>
-              <div className="framer-yb4kbr">
-                <Reveal className="framer-1ke5g3l" data-framer-component-type="RichTextContainer" y={24}>
-                  <h1 className="framer-text framer-styles-preset-7hjh4k" data-styles-preset="D_X5Z7yDL" dir="auto">
-                    Stop renting tools. Build your platform.
-                  </h1>
-                </Reveal>
-                <Reveal className="framer-jzdou5" data-framer-component-type="RichTextContainer" y={24}>
-                  <p className="framer-text framer-styles-preset-1fhxhj6" data-styles-preset="O0790qsZT" dir="auto">
-                    We design and build custom internal platforms for operations, approvals, reporting, inventory, and team workflows — built around your business, not someone else's subscription template.
-                  </p>
-                </Reveal>
-              </div>
-            </div>
-            <div className="framer-1tfsgnk">
-              <div className="ssr-variant">
-                <HeroPrimaryButton />
-              </div>
-            </div>
+            <HeroAboutIntro />
           </div>
         </div>
         <div className="ssr-variant hidden-nzvz5l">

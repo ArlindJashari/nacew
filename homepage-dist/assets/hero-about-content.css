@@ -1,0 +1,300 @@
+/* Midu.design-matched meta effects (sun loop + scroll shimmer) */
+
+.hero-sun-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  animation: hero-sun-spin 5s linear infinite;
+}
+
+.hero-sun-icon svg {
+  display: block;
+  width: 14px;
+  height: 14px;
+}
+
+@keyframes hero-sun-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.hero-scroll-prompt {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 0;
+  pointer-events: none;
+}
+
+.hero-scroll-shimmer {
+  position: relative;
+  display: inline-block;
+  min-width: 101px;
+  line-height: 1;
+  user-select: none;
+}
+
+.hero-scroll-shimmer__base {
+  margin: 0;
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.hero-scroll-shimmer__shine {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1;
+  color: transparent;
+  pointer-events: none;
+  background: linear-gradient(
+    67deg,
+    transparent 0%,
+    transparent 22.4%,
+    rgb(255, 255, 255) 50%,
+    transparent 77.6%,
+    transparent 100%
+  );
+  background-size: 200% 200%;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: hero-scroll-shimmer 3s linear infinite;
+}
+
+@keyframes hero-scroll-shimmer {
+  0% {
+    background-position: 200% 50%;
+  }
+  100% {
+    background-position: -100% 50%;
+  }
+}
+
+.hero-scroll-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 8px;
+  height: 10px;
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+
+.hero-scroll-arrow svg {
+  display: block;
+  width: 8px;
+  height: 10px;
+}
+
+@media (max-width: 809.98px) {
+  .hero-scroll-shimmer__base,
+  .hero-scroll-shimmer__shine {
+    font-size: 11px;
+  }
+
+  .hero-scroll-shimmer {
+    min-width: 88px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-sun-icon,
+  .hero-scroll-shimmer__shine {
+    animation: none;
+  }
+}
+
+/* Shared hero intro row — same structure on homepage + /about */
+#hero.framer-x2ps8j {
+  position: relative;
+  min-height: 100svh;
+  /* Extra room below mockup so hills + UI reveal on scroll */
+  padding-bottom: clamp(200px, 24vh, 320px);
+}
+
+#hero .framer-1i5w2fk,
+#hero .framer-3rmkn8,
+#hero .framer-1e2emgk {
+  position: static;
+}
+
+#hero .framer-1e2emgk {
+  width: 100% !important;
+  flex: none !important;
+  align-self: stretch !important;
+  min-height: 0;
+  gap: 0 !important;
+}
+
+#hero .framer-1tfsgnk {
+  display: none !important;
+}
+
+.hero-about-intro {
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 0 40px;
+  pointer-events: none;
+}
+
+/* Homepage: intro above mockup, comfortable gap below nav */
+#hero .hero-about-intro {
+  position: absolute;
+  top: clamp(180px, 30vh, 320px);
+  left: 0;
+  right: 0;
+  z-index: 25;
+}
+
+.hero-about-intro--about {
+  position: absolute;
+  top: 34%;
+  left: 0;
+  right: 0;
+}
+
+/* Intro is out of flow — don't let its wrapper push the mockup */
+#hero .framer-3rmkn8,
+#hero .framer-1e2emgk {
+  height: 0 !important;
+  min-height: 0 !important;
+  overflow: visible;
+  padding: 0 !important;
+}
+
+/* Text stays absolute on #hero; mockup in flow, tucked under foreground grass */
+#hero .framer-1i5w2fk {
+  width: 100% !important;
+  max-width: 1080px !important;
+  padding: 0 !important;
+  gap: 0 !important;
+  place-content: flex-start center !important;
+  align-content: flex-start !important;
+  justify-content: flex-start !important;
+}
+
+#hero .framer-s69j62-container {
+  position: relative !important;
+  margin-inline: auto !important;
+  width: min(960px, calc(100% - 48px)) !important;
+  margin-top: clamp(500px, 54vh, 640px) !important;
+  margin-bottom: clamp(-120px, -10vh, -48px) !important;
+  z-index: 2 !important;
+}
+
+/* Grass/trees in front of the bottom of the TV (original Fora-style depth) */
+#hero .framer-13cc0rb {
+  z-index: 6 !important;
+  pointer-events: none;
+}
+
+.hero-about-intro-inner {
+  width: 100%;
+  max-width: 1080px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.hero-about-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1 0 0;
+  min-width: 0;
+  font-family: Inter, sans-serif;
+  font-size: 13px;
+  letter-spacing: -0.1px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.hero-about-right {
+  flex: none;
+  max-width: 340px;
+}
+
+.hero-about-statement {
+  margin: 0;
+  font-family: Inter, sans-serif;
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 1.18;
+  letter-spacing: -0.6px;
+  color: #fff;
+}
+
+.hero-about-subtext {
+  margin: 12px 0 0;
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  line-height: 1.45;
+  letter-spacing: -0.1px;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.hero-about-right .hero-scroll-prompt {
+  margin-top: 14px;
+}
+
+@media (max-width: 809.98px) {
+  #hero .hero-about-intro {
+    top: clamp(148px, 26vh, 220px);
+    padding: 0 24px;
+  }
+
+  .hero-about-intro--about {
+    top: 30%;
+    padding: 0 24px;
+  }
+
+  #hero .framer-s69j62-container {
+    margin-top: clamp(420px, 48vh, 520px) !important;
+    width: min(960px, calc(100% - 32px)) !important;
+  }
+
+  .hero-about-intro-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .hero-about-meta {
+    font-size: 11px;
+  }
+
+  .hero-about-right {
+    max-width: 240px;
+  }
+
+  .hero-about-statement {
+    font-size: 20px;
+  }
+
+  .hero-about-subtext {
+    font-size: 12px;
+    margin-top: 8px;
+  }
+
+  .hero-about-right .hero-scroll-prompt {
+    margin-top: 8px;
+  }
+}

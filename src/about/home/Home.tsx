@@ -1,8 +1,8 @@
 import "./HomeHero.css";
+import HeroAboutIntro from "../../components/HeroAboutIntro";
 import { ProgressiveBlur } from "../components/ProgressiveBlur";
 import { ContactModalProvider } from "../../components/ContactModal";
 import { Nav } from "../sections/Nav";
-import { useClock } from "../hooks";
 import { ResearchInteract } from "./ResearchInteract";
 import { TheShift } from "./TheShift";
 import { WorldReach } from "./WorldReach";
@@ -12,8 +12,6 @@ import { Footer } from "../sections/Footer";
 import { Testimonials } from "@nacew/sections";
 
 export function Home() {
-  const time = useClock("Europe/Belgrade");
-
   return (
     <ContactModalProvider>
     <>
@@ -30,23 +28,7 @@ export function Home() {
           </div>
         </div>
 
-        <div className="hh-intro">
-          <div className="hh-intro-inner">
-            <span className="hh-meta-left">
-              Global product building studio
-              <span className="hh-dot" aria-hidden />
-              {time} Gjilan, Kosovo
-            </span>
-            <div className="hh-intro-right">
-              <p className="hh-statement">
-                Product building for teams who want to ship a better version of their product.
-              </p>
-              <span className="hh-scroll">
-                Scroll to explore <span aria-hidden>↓</span>
-              </span>
-            </div>
-          </div>
-        </div>
+        <HeroAboutIntro variant="about" />
 
         <h1 className="hh-wordmark">nacew</h1>
       </section>
