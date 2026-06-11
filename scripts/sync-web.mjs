@@ -23,6 +23,7 @@ if (!fs.existsSync(homepageDist)) {
   process.exit(1);
 }
 
+execSync('node scripts/fix-homepage-asset-casing.mjs', { cwd: nacewRoot, stdio: 'inherit' });
 execSync('node scripts/guard-homepage-dist.mjs', { cwd: nacewRoot, stdio: 'inherit' });
 
 function resolveAssetCaseInsensitive(assetsDir, filename) {
