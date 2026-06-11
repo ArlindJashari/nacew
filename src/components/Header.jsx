@@ -5,7 +5,7 @@ import './Header.css';
 
 const NAV_LINKS = [
   { label: 'Home', href: '/', desktopClassName: 'framer-n64igo', mobileClassName: 'framer-s3kwg5' },
-  { label: 'About Us', href: '/about', desktopClassName: 'framer-14r64j8', mobileClassName: 'framer-19vvauf' },
+  { label: 'About', href: '/about/', desktopClassName: 'framer-14r64j8', mobileClassName: 'framer-19vvauf' },
   { label: 'Platforms', href: '/#why-nacew', desktopClassName: 'framer-uq3nsd', mobileClassName: 'framer-1b71f1s' },
   { label: 'Use Cases', href: '/#what-you-get', desktopClassName: 'framer-2tenf9', mobileClassName: 'framer-1vzos0e' },
 ];

@@ -4,21 +4,23 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
 const root = path.dirname(fileURLToPath(import.meta.url));
+const webAboutDir = path.resolve(root, '../Nacew : WEb/about');
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
+  base: '/about/',
+  root,
+  publicDir: path.resolve(root, 'about-public'),
   resolve: {
     alias: {
       '@nacew/sections': path.resolve(root, 'shared/about-sections/src/index.ts'),
     },
   },
-  server: {
-    port: 5180,
-    strictPort: true,
-  },
-  preview: {
-    port: 5180,
-    strictPort: true,
+  build: {
+    outDir: webAboutDir,
+    emptyOutDir: true,
+    rollupOptions: {
+      input: path.resolve(root, 'about.html'),
+    },
   },
 });

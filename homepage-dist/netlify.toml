@@ -1,0 +1,3 @@
+# Canonical Netlify homepage — static bundle, do not run vite build here.
+[build]
+  publish = "."
