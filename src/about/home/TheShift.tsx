@@ -225,12 +225,24 @@ function ShiftCell({ cell }: { cell: (typeof PANELS)[number]["cells"][number] })
   );
 }
 
-function ShiftPanel({ panel }: { panel: (typeof PANELS)[number] }) {
+function ShiftPanel({
+  panel,
+  panelIndex,
+}: {
+  panel: (typeof PANELS)[number];
+  panelIndex: number;
+}) {
   return (
     <div className="shift-panel" data-panel={panel.id}>
       <div className="wyg-panel">
-        {panel.cells.map((cell) => (
-          <ShiftCell key={cell.title} cell={cell} />
+        {panel.cells.map((cell, cellIndex) => (
+          <div
+            key={cell.title}
+            className="shift-cell-runway"
+            style={{ "--stack-i": panelIndex * 2 + cellIndex } as CSSProperties}
+          >
+            <ShiftCell cell={cell} />
+          </div>
         ))}
       </div>
     </div>
@@ -302,8 +314,8 @@ export function TheShift() {
             className="shift-track"
             style={{ x, gap: PANEL_GAP }}
           >
-            {PANELS.map((panel) => (
-              <ShiftPanel key={panel.id} panel={panel} />
+            {PANELS.map((panel, panelIndex) => (
+              <ShiftPanel key={panel.id} panel={panel} panelIndex={panelIndex} />
             ))}
           </motion.div>
         </div>
