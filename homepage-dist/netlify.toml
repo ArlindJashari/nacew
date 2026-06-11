@@ -1,3 +1,4 @@
-# Canonical Netlify homepage — static bundle, do not run vite build here.
+# Static site: homepage from homepage-dist, /about built separately
 [build]
+  command = "npm run build:web"
   publish = "."

@@ -1,0 +1,466 @@
+/* ==========================================================================
+   Nacew — responsive fixes for mobile & tablet.
+   Every rule is scoped inside a max-width media query (≤1259.98px at the
+   widest), so desktop layouts at 1280px and above are never affected.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. About page: ".ri" section decorative floats (.ri-flow, .ri-jtbd) are
+      positioned at fixed desktop coordinates (left: ~1012px). Below 1260px
+      they hang past the viewport and force horizontal scrolling, which also
+      widens the fixed nav and hides the menu button on phones.
+   -------------------------------------------------------------------------- */
+@media (max-width: 1259.98px) {
+  .ri {
+    overflow: clip;
+  }
+}
+
+@media (max-width: 1023.98px) {
+  .ri-flow,
+  .ri-jtbd {
+    display: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   2. Safety net on both pages: decorative bleeds (hero grain blobs, bento
+      cursor chips, footer glows) must never create sideways scroll.
+   -------------------------------------------------------------------------- */
+@media (max-width: 1023.98px) {
+  html,
+  body {
+    overflow-x: clip;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3. Home "Before / After" comparison lists: li { display:flex } collapses
+      the whitespace before the underlined <u> phrases ("10+SaaS", "per-
+      seatpricing") and wraps each phrase as a separate flex column on
+      phones. Restore normal inline text flow on tablet & mobile.
+   -------------------------------------------------------------------------- */
+@media (max-width: 1023.98px) {
+  .tc-feature-list li {
+    display: block;
+    line-height: 1.45;
+    /* hanging indent so wrapped lines align with the text, not the bullet */
+    padding-left: 22px;
+    text-indent: -22px;
+  }
+
+  .tc-feature-list li::before {
+    display: inline;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. Hero intro (home + about): statement is capped at 240px / 20px below
+      810px, which wastes most of the screen. Scale it to the viewport.
+   -------------------------------------------------------------------------- */
+@media (min-width: 481px) and (max-width: 809.98px) {
+  .hero-about-right {
+    max-width: 440px;
+  }
+
+  .hero-about-statement {
+    font-size: 26px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-about-right {
+    max-width: 100%;
+  }
+
+  .hero-about-statement {
+    font-size: 24px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4b. Home hero composition on phones/tablets. On desktop the device mockup
+       sits nestled into the grass hills with mountains flanking it; on small
+       screens the hill artwork (sized off fixed image widths) collapses to a
+       sliver below the fold, so the mockup floats in a black void and the
+       intro text almost touches the device frame.
+       - scale the bottom-anchored landscape layers up so the hills rise
+         behind/in front of the mockup like on desktop
+       - push the mockup down for a clear gap under "Scroll to explore"
+       - sink its bottom deeper so the foreground grass overlaps it
+   -------------------------------------------------------------------------- */
+@media (max-width: 809.98px) {
+  /* far mountains + mid hills (behind the mockup, z:0) */
+  #hero .framer-u991jm,
+  #hero .framer-f7ktf5 {
+    transform: scale(1.6);
+    transform-origin: 50% 100%;
+  }
+
+  /* foreground grass + trees (in front of the mockup, z:6) */
+  #hero .framer-13cc0rb {
+    transform: scale(1.6);
+    transform-origin: 50% 100%;
+  }
+
+  /* intro slightly higher to open up the composition */
+  #hero .hero-about-intro {
+    top: clamp(140px, 24vh, 200px);
+  }
+
+  /* breathing room between intro copy and the device. Keep the device wide
+     (the whole 3D scene scales off this width — too narrow and the inner
+     card UI reflows and overlaps), sink its bottom into the grass. */
+  #hero .framer-s69j62-container {
+    width: min(960px, calc(100% - 24px)) !important;
+    margin-top: clamp(430px, 52vh, 540px) !important;
+    margin-bottom: clamp(-150px, -16vh, -100px) !important;
+  }
+
+  /* shorter tail so the bottom-anchored hills rise into the first
+     viewport (desktop keeps its tall reveal runway) */
+  #hero.framer-x2ps8j {
+    padding-bottom: clamp(120px, 16vh, 200px);
+  }
+}
+
+/* very small phones: keep the device near full-bleed so the inner card UI
+   stays legible (the scene scales off this width) */
+@media (max-width: 379.98px) {
+  #hero .framer-s69j62-container {
+    width: min(960px, calc(100% - 16px)) !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   5. Home "Control your company" CTA: the dashboard mockup is a fixed
+      700px-wide graphic (inner panels use fixed pixel widths), so below
+      640px it gets cut off mid-screen. Scale the whole composition down,
+      anchored to the bottom-left where it is positioned, and pull the
+      section heights in to match the smaller art.
+      (Stepped scales — the graphic is decorative, so half-pixel accuracy
+      between steps is invisible; each step keeps it inside the viewport.)
+   -------------------------------------------------------------------------- */
+@media (max-width: 639.98px) {
+  .branch-cta-graphic-wrap {
+    left: 20px;
+    transform-origin: bottom left;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 639.98px) {
+  .branch-cta-graphic-wrap {
+    transform: scale(0.8);
+  }
+}
+
+@media (min-width: 560px) and (max-width: 599.98px) {
+  .branch-cta-graphic-wrap {
+    transform: scale(0.77);
+  }
+}
+
+@media (min-width: 520px) and (max-width: 559.98px) {
+  .branch-cta-graphic-wrap {
+    transform: scale(0.71);
+  }
+}
+
+@media (min-width: 480px) and (max-width: 519.98px) {
+  .branch-cta-graphic-wrap {
+    transform: scale(0.65);
+  }
+}
+
+@media (min-width: 412px) and (max-width: 479.98px) {
+  .branch-cta-graphic-wrap {
+    transform: scale(0.56);
+  }
+}
+
+@media (min-width: 360px) and (max-width: 411.98px) {
+  .branch-cta-graphic-wrap {
+    transform: scale(0.48);
+  }
+}
+
+@media (max-width: 359.98px) {
+  .branch-cta-graphic-wrap {
+    transform: scale(0.42);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   5b. Mobile rhythm & readability (≤809px):
+       - desktop-scale 160px section paddings tightened to a consistent
+         96px vertical rhythm
+       - body/meta copy bumped to comfortable mobile sizes
+       - about page: pinned "shift" heading starts below the fixed nav
+   -------------------------------------------------------------------------- */
+@media (max-width: 809.98px) {
+  .tool-comparison-section {
+    padding: 96px 24px;
+  }
+
+  .testi-section {
+    padding: 96px 0;
+  }
+
+  .hero-about-subtext {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  .hero-about-meta {
+    font-size: 12px;
+  }
+
+  .hero-scroll-shimmer__base,
+  .hero-scroll-shimmer__shine {
+    font-size: 12px;
+  }
+
+  .shift-pin {
+    padding-top: 128px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   5c. About page "shift" section: on desktop the panels scrub horizontally
+       as you scroll (JS-driven translateX on .shift-track). On phones/tablets
+       the about CSS already disabled the JS scrub and fell back to a manual
+       horizontal swipe (scroll-snap-type:x) — bad mobile UX (hidden content,
+       no scroll affordance). Convert to a natural vertical stack so each
+       panel reads top-to-bottom with the rest of the page.
+   -------------------------------------------------------------------------- */
+@media (max-width: 1023.98px) {
+  .shift {
+    height: auto;
+  }
+
+  .shift-pin {
+    position: relative;
+    top: auto;
+    height: auto;
+    min-height: 0;
+    gap: 32px;
+    padding-top: 128px;
+    padding-bottom: 24px;
+    overflow: visible;
+  }
+
+  .shift-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .shift-head-right {
+    max-width: none;
+    padding: 0;
+  }
+
+  /* stage becomes a plain vertical container — no horizontal scroll/snap */
+  .shift-stage {
+    scroll-snap-type: none;
+    max-width: none;
+    padding: 0 24px;
+    overflow: visible;
+  }
+
+  .shift-track {
+    flex-direction: column;
+    gap: 24px;
+    height: auto;
+    padding: 0;
+    transform: none !important;
+  }
+
+  .shift-panel {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: none;
+    scroll-snap-align: none;
+  }
+
+  .wyg-panel {
+    grid-template-columns: 1fr;
+    height: auto;
+    min-height: 0;
+  }
+
+  .wyg-cell {
+    min-height: 0;
+    padding: 32px 24px;
+  }
+
+  /* art is flex:1 and collapses once the cell no longer reserves height —
+     give each graphic a fixed stage so it stays visible in the stack */
+  .wyg-cell-art {
+    flex: 0 0 auto;
+    min-height: 260px;
+    margin-top: 24px;
+  }
+
+  .wyg-cell + .wyg-cell {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-left: none;
+  }
+}
+
+/* tablet portrait/landscape: roomier head padding than the phone default */
+@media (min-width: 810px) and (max-width: 1023.98px) {
+  .shift-head-wrap {
+    padding: 0 40px;
+  }
+
+  .shift-stage {
+    padding: 0 40px;
+  }
+}
+
+@media (max-width: 809.98px) {
+  .shift-head-wrap {
+    padding: 0 24px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   6. Contact modal, phone polish:
+      - 16px inputs stop iOS Safari from auto-zooming the page on focus.
+      - dvh keeps the sheet inside the visible area when the browser UI
+        collapses/expands.
+      - safe-area padding keeps Submit above the home indicator.
+      - slightly taller pills for comfortable touch targets.
+   -------------------------------------------------------------------------- */
+/* (.cm-root prefix beats the modal stylesheet, which is injected after
+   this file at runtime) */
+@media (max-width: 809.98px) {
+  .cm-root .cm-panel {
+    max-height: min(92dvh, 760px);
+  }
+
+  .cm-root .cm-input,
+  .cm-root .cm-textarea {
+    font-size: 16px;
+  }
+
+  .cm-root .cm-pill {
+    padding: 12px 16px;
+  }
+
+  .cm-root .cm-footer {
+    padding-bottom: calc(24px + env(safe-area-inset-bottom));
+  }
+}
+
+/* --------------------------------------------------------------------------
+   7. Mobile navigation — make both pages behave identically (best practice:
+      full-screen overlay, scroll locked, clean X icon, large tap targets).
+
+   7a. HOME (Framer nav). The open menu panel was only ~431px tall, so the
+       hero/page behind it stayed visible AND tappable — taps near items
+       "fell through" to the page. The fixed container holds the toggle;
+       when the toggle is in its open (X) variant we stretch the overlay to
+       the full viewport and lock background scroll. Scoped via :has() to the
+       open state so the closed top bar is unaffected.
+   -------------------------------------------------------------------------- */
+@media (max-width: 1023.98px) {
+  .framer-1xw88z8-container:has(.framer-oG402.framer-v-2rnmh5) {
+    height: 100dvh !important;
+    background: #000 !important;
+  }
+
+  html:has(.framer-oG402.framer-v-2rnmh5) {
+    overflow: hidden;
+  }
+
+  /* full-width Contact Us pill to match the about page (bigger tap target).
+     Scoped to the open menu so the desktop top-bar / footer CTAs keep their
+     natural width. */
+  .framer-1xw88z8-container:has(.framer-oG402.framer-v-2rnmh5) .framer-z1s5bh,
+  .framer-1xw88z8-container:has(.framer-oG402.framer-v-2rnmh5) .framer-5w4ti-container,
+  .framer-1xw88z8-container:has(.framer-oG402.framer-v-2rnmh5) .framer-SDNRu {
+    width: 100% !important;
+  }
+}
+
+/* 7b. ABOUT (custom nav).
+       (i) Close button was a 2-line hamburger whose bars rotate around their
+           own centers 6px apart → off-centre ">" instead of "✕". Pin both
+           bars to the toggle centre so the rotations overlap into a clean X.
+       (ii) Like home, the open panel didn't cover the viewport — the page
+            behind stayed visible/tappable. Make it a full-screen overlay
+            (square bottom, no shadow) and lock background scroll. */
+.nacew-nav--mobile-open .nacew-nav-menu-toggle {
+  position: relative;
+}
+
+.nacew-nav--mobile-open .nacew-nav-menu-bar {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 22px;
+  margin: -1.25px 0 0 -11px;
+}
+
+.nacew-nav--mobile-open {
+  min-height: 100dvh;
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+html:has(.nacew-nav--mobile-open) {
+  overflow: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   8. About work-detail modal (.wpm-root). On mobile the layout used a CSS
+      grid (rows: auto / 1px / 1fr for preview / divider / copy) but set
+      `order` only on the preview (1) and copy (3). The divider kept order:0,
+      so it grabbed the first `auto` row and pushed the PREVIEW into the 1px
+      row — collapsing it. The phone graphic (≈354px) then overflowed its 1px
+      cell with a negative top and floated over the title and copy (the broken
+      overlap in the report).
+
+      Fix: drop the grid and stack as a simple flex column — phone preview on
+      top, divider, then the scrollable copy fills the rest. Cap the phone
+      height so the copy keeps room. Scoped to ≤760px to match the native
+      mobile breakpoint; at 761px+ the working desktop side-by-side layout
+      (phone left, copy right) takes over and uses the extra width on tablets.
+   -------------------------------------------------------------------------- */
+@media (max-width: 760px) {
+  .wpm-split {
+    display: flex !important;
+    flex-direction: column !important;
+    grid-template-columns: none !important;
+    grid-template-rows: none !important;
+    height: auto !important;
+    min-height: 0;
+  }
+
+  .wpm-preview {
+    order: 1;
+    flex: 0 0 auto;
+    padding: 0 0 16px !important;
+  }
+
+  .wpm-divider {
+    order: 2;
+    width: 100%;
+    height: 1px;
+  }
+
+  .wpm-copy-scroll {
+    order: 3;
+    flex: 1 1 auto;
+    min-height: 0;
+    padding-left: 0 !important;
+  }
+
+  /* smaller phone so the copy below it stays readable */
+  .wpm-device {
+    max-height: min(300px, 36vh) !important;
+  }
+}
