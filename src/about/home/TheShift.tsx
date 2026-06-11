@@ -225,25 +225,43 @@ function ShiftCell({ cell }: { cell: (typeof PANELS)[number]["cells"][number] })
   );
 }
 
+const MOBILE_STACK_MQ = "(max-width: 809.98px)";
+
+function useMobileStack() {
+  const [mobile, setMobile] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia(MOBILE_STACK_MQ);
+    const sync = () => setMobile(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+
+  return mobile;
+}
+
 function ShiftPanel({
   panel,
-  panelIndex,
 }: {
   panel: (typeof PANELS)[number];
-  panelIndex: number;
 }) {
   return (
     <div className="shift-panel" data-panel={panel.id}>
       <div className="wyg-panel">
-        {panel.cells.map((cell, cellIndex) => (
-          <div
-            key={cell.title}
-            className="shift-cell-runway"
-            style={{ "--stack-i": panelIndex * 2 + cellIndex } as CSSProperties}
-          >
-            <ShiftCell cell={cell} />
-          </div>
+        {panel.cells.map((cell) => (
+          <ShiftCell key={cell.title} cell={cell} />
         ))}
+      </div>
+    </div>
+  );
+}
+
+function ShiftMobileCard({ cell }: { cell: (typeof PANELS)[number]["cells"][number] }) {
+  return (
+    <div className="shift-sticky-card">
+      <div className="wyg-panel wyg-panel--stack-card">
+        <ShiftCell cell={cell} />
       </div>
     </div>
   );
@@ -253,6 +271,7 @@ export function TheShift() {
   const sectionRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const [stride, setStride] = useState(0);
+  const isMobileStack = useMobileStack();
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -262,6 +281,8 @@ export function TheShift() {
   const x = useTransform(scrollYProgress, [0, 1], [0, stride ? -stride : 0]);
 
   useEffect(() => {
+    if (isMobileStack) return;
+
     const measure = () => {
       const panel = trackRef.current?.querySelector<HTMLElement>(".shift-panel");
       if (!panel) return;
@@ -275,11 +296,13 @@ export function TheShift() {
       ro.disconnect();
       window.removeEventListener("resize", measure);
     };
-  }, []);
+  }, [isMobileStack]);
+
+  const mobileCells = PANELS.flatMap((panel) => panel.cells);
 
   return (
     <section
-      className="shift"
+      className={`shift${isMobileStack ? " shift--mobile-stack" : ""}`}
       id="what-you-get"
       data-nav-theme="dark"
       ref={sectionRef}
@@ -309,15 +332,23 @@ export function TheShift() {
         </div>
 
         <div className="shift-stage">
-          <motion.div
-            ref={trackRef}
-            className="shift-track"
-            style={{ x, gap: PANEL_GAP }}
-          >
-            {PANELS.map((panel, panelIndex) => (
-              <ShiftPanel key={panel.id} panel={panel} panelIndex={panelIndex} />
-            ))}
-          </motion.div>
+          {isMobileStack ? (
+            <div ref={trackRef} className="shift-track shift-track--mobile-stack">
+              {mobileCells.map((cell) => (
+                <ShiftMobileCard key={cell.title} cell={cell} />
+              ))}
+            </div>
+          ) : (
+            <motion.div
+              ref={trackRef}
+              className="shift-track"
+              style={{ x, gap: PANEL_GAP }}
+            >
+              {PANELS.map((panel) => (
+                <ShiftPanel key={panel.id} panel={panel} />
+              ))}
+            </motion.div>
+          )}
         </div>
       </div>
     </section>

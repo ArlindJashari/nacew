@@ -302,97 +302,72 @@
 }
 
 @media (max-width: 809.98px) {
-  .shift {
+  .shift.shift--mobile-stack {
     height: auto;
-  }
-
-  .shift-pin {
-    position: relative;
-    height: auto;
-    min-height: 0;
-    gap: 32px;
-    padding-top: 128px;
-    padding-bottom: 24px;
     overflow: visible;
   }
 
-  .shift-head {
+  .shift--mobile-stack .shift-pin {
+    position: relative;
+    height: auto;
+    min-height: 0;
+    gap: 36px;
+    padding-top: 128px;
+    padding-bottom: 0;
+    overflow: visible;
+  }
+
+  .shift--mobile-stack .shift-head {
     flex-direction: column;
     align-items: flex-start;
     gap: 20px;
   }
 
-  .shift-head-right {
+  .shift--mobile-stack .shift-head-right {
     max-width: none;
     padding: 0;
   }
 
-  .shift-stage {
+  .shift--mobile-stack .shift-stage {
     max-width: none;
-    padding: 0 24px 48px;
+    padding: 0 24px;
     overflow: visible;
   }
 
-  .shift-track {
+  .shift-track--mobile-stack {
     flex-direction: column;
-    gap: 0;
+    gap: 24px;
     height: auto;
-    padding: 0;
+    padding: 0 0 168px;
     transform: none !important;
+    will-change: auto;
   }
 
-  .shift-panel {
-    flex: 0 0 auto;
+  .shift-sticky-card {
+    position: sticky !important;
+    top: 90px !important;
+    flex: none;
     width: 100%;
-    max-width: none;
-  }
-
-  .wyg-panel {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    grid-template-columns: none;
-    height: auto;
-    min-height: 0;
-    border: none;
-    background: transparent;
+    height: min-content !important;
+    border-radius: 24px;
     overflow: visible;
   }
 
-  .shift-cell-runway {
-    display: block;
+  .shift-sticky-card .wyg-panel--stack-card {
+    grid-template-columns: 1fr;
+    min-height: 440px;
+    height: min-content;
   }
 
-  .shift-cell-runway:not(:last-child) {
-    height: min(520px, 72vh);
-  }
-
-  .shift-cell-runway:last-child {
-    min-height: min(480px, 68vh);
-    padding-bottom: 64px;
-  }
-
-  .shift-cell-runway .wyg-cell {
-    position: sticky !important;
-    top: calc(88px + var(--stack-i, 0) * 12px);
-    z-index: calc(var(--stack-i, 0) + 1);
-    min-height: min(440px, 62vh);
+  .shift-sticky-card .wyg-cell {
+    min-height: 440px;
     padding: 30px 24px 0;
-    background: #000;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 24px;
-    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.45);
   }
 
-  .shift-cell-runway .wyg-cell + .wyg-cell {
-    border-left: none;
-    border-top: none;
-  }
-
-  .shift-cell-runway .wyg-cell-art {
+  .shift-sticky-card .wyg-cell-art {
     flex: 0 0 auto;
-    min-height: 240px;
-    margin-top: 20px;
+    min-height: 260px;
+    margin-top: 24px;
   }
 }
 

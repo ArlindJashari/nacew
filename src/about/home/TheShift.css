@@ -112,11 +112,6 @@
   max-width: 1080px;
 }
 
-/* Desktop: runway wrappers are layout-neutral. */
-.shift-cell-runway {
-  display: contents;
-}
-
 /* ---- Panels + cells (from homepage) ---- */
 .wyg-panel {
   background: #000;
@@ -626,123 +621,103 @@
   animation: wg-dash 1.1s linear infinite;
 }
 
-/* ---- Mobile: sticky card stack (matches homepage #what-you-get) ---- */
+/* ---- Mobile: sticky card stack — mirrors homepage #what-you-get ---- */
 @media (max-width: 809.98px) {
-  .shift {
+  .shift.shift--mobile-stack {
     height: auto;
-  }
-
-  .shift-pin {
-    position: relative;
-    height: auto;
-    min-height: 0;
-    padding-top: 64px;
-    gap: 40px;
     overflow: visible;
   }
 
-  .shift-head-wrap {
+  .shift--mobile-stack .shift-pin {
+    position: relative;
+    top: auto;
+    height: auto;
+    min-height: 0;
+    gap: 36px;
+    padding-top: 64px;
+    padding-bottom: 0;
+    overflow: visible;
+  }
+
+  .shift--mobile-stack .shift-head-wrap {
     padding: 0 24px;
   }
 
-  .shift-head {
+  .shift--mobile-stack .shift-head {
     flex-direction: column;
     align-items: flex-start;
     gap: 20px;
   }
 
-  .shift-head-right {
+  .shift--mobile-stack .shift-head-right {
     max-width: none;
     padding: 0;
   }
 
-  .shift-title {
+  .shift--mobile-stack .shift-title {
     font-size: 28px;
   }
 
-  .shift-stage {
+  .shift--mobile-stack .shift-stage {
     max-width: none;
-    padding: 0 24px 48px;
+    padding: 0 24px;
     overflow: visible;
   }
 
-  .shift-track {
-    flex-direction: column;
-    gap: 0;
-    height: auto;
-    padding: 0;
-    transform: none !important;
-  }
-
-  .shift-panel {
-    flex: 0 0 auto;
-    width: 100%;
-    max-width: none;
-  }
-
-  .shift-panel + .shift-panel {
-    margin-top: 0;
-  }
-
-  .wyg-panel {
+  /* Same container rhythm as homepage .framer-uc3xgg on mobile */
+  .shift-track--mobile-stack {
     display: flex;
     flex-direction: column;
-    gap: 0;
-    grid-template-columns: none;
-    min-height: 0;
+    gap: 24px;
+    width: 100%;
     height: auto;
-    border: none;
-    background: transparent;
+    padding: 0 0 168px;
+    transform: none !important;
+    will-change: auto;
+  }
+
+  /* Same sticky pin as homepage .framer-d07aw3 / .framer-1wb6mxc */
+  .shift-sticky-card {
+    position: sticky !important;
+    top: 90px;
+    flex: none;
+    width: 100%;
+    height: min-content !important;
+    border-radius: 24px;
     overflow: visible;
   }
 
-  .shift-cell-runway {
-    display: block;
+  .shift-sticky-card .wyg-panel--stack-card {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+    min-height: 440px;
+    height: min-content;
+    overflow: hidden;
   }
 
-  .shift-cell-runway:not(:last-child) {
-    height: min(520px, 72vh);
-  }
-
-  .shift-cell-runway:last-child {
-    min-height: min(480px, 68vh);
-    padding-bottom: 64px;
-  }
-
-  .shift-cell-runway .wyg-cell {
-    position: sticky;
-    top: calc(88px + var(--stack-i, 0) * 12px);
-    z-index: calc(var(--stack-i, 0) + 1);
-    min-height: min(440px, 62vh);
+  .shift-sticky-card .wyg-cell {
+    min-height: 440px;
     padding: 30px 24px 0;
-    background: #000;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 24px;
-    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.45);
   }
 
-  .shift-cell-runway .wyg-cell + .wyg-cell {
+  .shift-sticky-card .wyg-cell + .wyg-cell {
     border-left: none;
     border-top: none;
   }
 
-  .shift-cell-runway .wyg-cell-art {
+  .shift-sticky-card .wyg-cell-art {
     flex: 0 0 auto;
-    min-height: 240px;
-    margin-top: 20px;
+    min-height: 260px;
+    margin-top: 24px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   @media (max-width: 809.98px) {
-    .shift-cell-runway:not(:last-child) {
-      height: auto;
-    }
-
-    .shift-cell-runway .wyg-cell {
-      position: relative;
-      top: auto;
-      margin-bottom: 24px;
+    .shift-sticky-card {
+      position: relative !important;
+      top: auto !important;
     }
   }
 }
