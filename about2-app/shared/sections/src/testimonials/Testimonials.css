@@ -1,0 +1,172 @@
+/* Mirror ProcessHero enter — white backdrop, black shell scales from center */
+.testi-wrap {
+  position: relative;
+  color: #f4f6fb;
+  overflow: clip;
+}
+
+.testi-block {
+  position: relative;
+}
+
+.testi-stage {
+  position: sticky;
+  top: 0;
+  isolation: isolate;
+}
+
+.testi-stage-shell {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  transform-origin: 50% 42%;
+  will-change: transform, border-radius;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.testi-head {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 32px;
+  font-family: var(--f-inter, "Inter", sans-serif);
+}
+
+.testi-eyebrow {
+  margin: 0 0 18px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.42);
+  font-size: 13px;
+}
+
+.testi-title {
+  margin: 0;
+  letter-spacing: -0.01em;
+  color: #f4efeb;
+  font-family: var(--f-mono, "Fragment Mono", ui-monospace, monospace);
+  font-size: clamp(38px, 5vw, 60px);
+  font-weight: 400;
+  line-height: 1.04;
+}
+
+.testi-stack {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  margin: -18vh auto 0;
+  padding: 0 24px 24px;
+}
+
+.testi-card-wrap {
+  position: sticky;
+  top: 0;
+  height: 62vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.testi-card-wrap:last-child {
+  height: auto;
+  min-height: 54vh;
+}
+
+.testi-card {
+  position: relative;
+  width: min(640px, 100%);
+  min-height: 320px;
+  margin: 0;
+  padding: 48px 48px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  border-radius: 28px;
+  transform-origin: top;
+  pointer-events: auto;
+  box-shadow: 0 40px 90px -30px rgba(0, 0, 0, 0.7);
+}
+
+.testi-quote-mark {
+  height: 44px;
+  opacity: 0.35;
+  font-family: "Newsreader", Georgia, serif;
+  font-size: 88px;
+  line-height: 0.5;
+}
+
+.testi-quote {
+  flex: 1;
+  margin: 0;
+  letter-spacing: -0.01em;
+  font-family: "Newsreader", Georgia, serif;
+  font-size: clamp(22px, 2.6vw, 30px);
+  font-weight: 450;
+  line-height: 1.32;
+}
+
+.testi-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.testi-name {
+  letter-spacing: -0.01em;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.testi-role {
+  opacity: 0.66;
+  font-size: 14px;
+}
+
+@media (max-width: 640px) {
+  .testi-stack {
+    margin-top: -14vh;
+  }
+
+  .testi-card {
+    border-radius: 22px;
+    min-height: 280px;
+    padding: 36px 28px 32px;
+  }
+
+  .testi-card-wrap {
+    top: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .testi-stage-shell {
+    transform: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+
+  .testi-stack {
+    margin-top: 0;
+  }
+
+  .testi-card-wrap {
+    position: relative;
+    height: auto;
+    margin-bottom: 28px;
+  }
+
+  .testi-card {
+    position: relative;
+    top: 0 !important;
+    transform: none !important;
+  }
+}

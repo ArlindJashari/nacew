@@ -1,0 +1,26 @@
+/* Hero.css — mobile/tablet foreground grass.
+   The grass wrapper is forced to min 960px width, which on a phone blows it up
+   into a huge band burying the mockup. Scale it to a moderate size, and add a
+   full-width bottom fade so the grass always blends into the black section
+   below (no hard cut edge) regardless of its size. */
+
+.hero-bottom-fade {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .framer-13cc0rb > div {
+    width: clamp(420px, 150vw, 680px) !important;
+  }
+  .hero-bottom-fade {
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 210px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 56%, #000 100%);
+    z-index: 11;
+    pointer-events: none;
+  }
+}

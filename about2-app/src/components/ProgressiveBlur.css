@@ -1,0 +1,40 @@
+/* Framer Progressive Blur - fixed seam, matches Midu (100px bottom strip) */
+
+.progressive-blur {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 88;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  background: none;
+}
+
+.progressive-blur-bottom {
+  bottom: 0;
+  height: var(--pb-height, 100px);
+}
+
+.progressive-blur-top {
+  top: 0;
+  height: var(--pb-height, 100px);
+}
+
+.progressive-blur.is-on {
+  opacity: 1;
+}
+
+.progressive-blur-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .progressive-blur-layer:nth-child(n + 4) {
+    display: none;
+  }
+}

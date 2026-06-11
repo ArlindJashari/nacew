@@ -1,0 +1,16 @@
+/* FAQ.css — match the FAQ content width to the other sections (1080px).
+   Framer's media CSS capped it at 720px, leaving a large gap on the side. */
+#faq .framer-5qsqx6 {
+  max-width: 1080px !important;
+}
+
+/* Mobile/tablet: keep the FAQ panels inside the viewport (a panel was 426px
+   wide on a 375px screen). */
+@media (max-width: 809px) {
+  #faq .framer-qctedc,
+  #faq .framer-5qsqx6 > * {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  #faq { overflow-x: clip; }
+}

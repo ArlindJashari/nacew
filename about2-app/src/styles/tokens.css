@@ -1,0 +1,39 @@
+:root {
+  /* Brand */
+  --nacew-purple: #7064c6;
+  --nacew-teal: #2c7e88;
+  --nacew-green: #537d2b;
+  --nacew-red: #c25055;
+
+  /* Accent */
+  --accent: #ff5a26;
+
+  /* Surfaces */
+  --bg: #050505;
+  --surface: #0e0e10;
+  --surface-2: #141416;
+  --card: rgba(255, 255, 255, 0.04);
+  --card-border: rgba(255, 255, 255, 0.08);
+
+  /* Text */
+  --t-100: #ffffff;
+  --t-60: rgba(255, 255, 255, 0.6);
+  --t-50: rgba(255, 255, 255, 0.5);
+  --t-40: rgba(255, 255, 255, 0.4);
+  --t-30: rgba(255, 255, 255, 0.3);
+  --ink: #030303;
+
+  /* Type */
+  --f-med: "Switzer Medium", "Inter", sans-serif;
+  --f-reg: "Switzer Regular", "Inter", sans-serif;
+  --f-semi: "Switzer Semibold", "Inter", sans-serif;
+  --f-bold: "Switzer Bold", "Inter", sans-serif;
+  --f-serif: "Instrument Serif", serif;
+  --f-inter: "Inter", sans-serif;
+  --f-suisse: "SuisseIntl", "Inter", sans-serif;
+  --f-source-serif: "SourceSerif4", serif;
+
+  /* Layout */
+  --content: 1200px;
+  --pad-x: 40px;
+}

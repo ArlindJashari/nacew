@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { Link, useLocation } from 'react-router-dom';
+import './Header.css';
 
 const NAV_LINKS = [
-  { label: 'Approach', href: './#about', desktopClassName: 'framer-n64igo', mobileClassName: 'framer-s3kwg5' },
-  { label: 'Platforms', href: './#services', desktopClassName: 'framer-14r64j8', mobileClassName: 'framer-19vvauf' },
-  { label: 'Use Cases', href: './#what-you-get', desktopClassName: 'framer-uq3nsd', mobileClassName: 'framer-1b71f1s' },
-  { label: 'Pricing', href: './#pricing', desktopClassName: 'framer-2tenf9', mobileClassName: 'framer-1vzos0e' },
+  { label: 'Home', href: '/', desktopClassName: 'framer-n64igo', mobileClassName: 'framer-s3kwg5' },
+  { label: 'About Us', href: '/about', desktopClassName: 'framer-14r64j8', mobileClassName: 'framer-19vvauf' },
+  { label: 'Platforms', href: '/#why-nacew', desktopClassName: 'framer-uq3nsd', mobileClassName: 'framer-1b71f1s' },
+  { label: 'Use Cases', href: '/#what-you-get', desktopClassName: 'framer-2tenf9', mobileClassName: 'framer-1vzos0e' },
 ];
 
-const LOGIN_URL = 'https://auth.nacew.com/login';
-const SIGNUP_URL = 'https://auth.nacew.com/signup';
+const CONTACT_URL = 'mailto:contact@nacew.com';
 
 const desktopNavStyle = {
   '--1gxu5kl': '0px 40px 0px 40px',
@@ -95,7 +96,7 @@ const mobileCtaStyle = {
 
 function LogoLink() {
   return (
-    <a className="framer-3ttqtb framer-cpft6o" href="./#hero">
+    <Link className="framer-3ttqtb framer-cpft6o" to="/">
       <div
         data-framer-component-type="SVG"
         className="framer-c26lio"
@@ -123,7 +124,7 @@ function LogoLink() {
           style={{ display: 'block', flex: '0 0 auto', width: 72, height: 24, objectFit: 'contain' }}
         />
       </div>
-    </a>
+    </Link>
   );
 }
 
@@ -144,14 +145,14 @@ function NavTextLink({ item, variant, onClick }) {
         dir="auto"
         style={variant === 'desktop' ? richTextParagraphStyle : undefined}
       >
-        <a
+        <Link
           className="framer-text framer-styles-preset-v2iiak"
           data-styles-preset="Bh7brll6H"
-          href={item.href}
+          to={item.href}
           onClick={onClick}
         >
           {item.label}
-        </a>
+        </Link>
       </p>
     </div>
   );
@@ -206,24 +207,8 @@ function DesktopHeader({ isDarkSection, scrollBackdropOpacity }) {
               ))}
             </div>
             <div className="framer-1gy7y3o">
-              <div className="framer-13whxli-container" style={{ opacity: 0 }}>
-                <HeaderButton href={LOGIN_URL}>Go to app</HeaderButton>
-              </div>
-              <div className="framer-12wzvw3" data-framer-component-type="RichTextContainer" style={richTextStyle}>
-                <p className="framer-text framer-styles-preset-1fhxhj6" data-styles-preset="O0790qsZT" dir="auto" style={richTextParagraphStyle}>
-                  <a
-                    className="framer-text framer-styles-preset-v2iiak"
-                    data-styles-preset="Bh7brll6H"
-                    href={LOGIN_URL}
-                    target="_blank"
-                    rel="noopener"
-                  >
-                    Login
-                  </a>
-                </p>
-              </div>
               <div className="framer-vsguht-container">
-                <HeaderButton href={SIGNUP_URL}>Get started</HeaderButton>
+                <HeaderButton href={CONTACT_URL}>Contact Us</HeaderButton>
               </div>
             </div>
           </div>
@@ -233,7 +218,8 @@ function DesktopHeader({ isDarkSection, scrollBackdropOpacity }) {
   );
 }
 
-function MobileHeader({ isDarkSection, mobileOpen, setMobileOpen }) {
+function MobileHeader({ isDarkSection, mobileOpen, setMobileOpen, scrollBackdropOpacity }) {
+  const barColor = mobileOpen || isDarkSection ? '#ffffff' : '#18181b';
   const mobileNavClassName = mobileOpen
     ? 'framer-KjT5A framer-knjRQ framer-KVnNX framer-gF1Dm framer-wz7sin framer-v-xqjeaw'
     : 'framer-KjT5A framer-knjRQ framer-KVnNX framer-gF1Dm framer-wz7sin framer-v-c2dsud';
@@ -258,6 +244,16 @@ function MobileHeader({ isDarkSection, mobileOpen, setMobileOpen }) {
         data-nacew-theme={isDarkSection ? 'dark' : 'light'}
         style={mobileNavBaseStyle}
       >
+        {!mobileOpen && (
+          <motion.div
+            className="framer-6fjk0p-container"
+            animate={{ opacity: scrollBackdropOpacity }}
+            transition={{ duration: 0.18, ease: [0.44, 0, 0.56, 1] }}
+            style={{ opacity: scrollBackdropOpacity, position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0 }}
+          >
+            <div style={{ width: '100%', height: '100%', borderRadius: 0, background: backdropGradient }} />
+          </motion.div>
+        )}
         <div className="framer-tk7xlw">
           <div className="framer-16k0bb6">
             <div className="framer-1bg5h3h">
@@ -285,13 +281,13 @@ function MobileHeader({ isDarkSection, mobileOpen, setMobileOpen }) {
                     className="framer-xwg8km"
                     animate={{ rotate: mobileOpen ? 45 : 0 }}
                     transition={{ duration: 0.34, ease: [0.44, 0, 0.56, 1] }}
-                    style={{ backgroundColor: 'rgb(255, 255, 255)', transformOrigin: '50% 50%' }}
+                    style={{ backgroundColor: barColor, transformOrigin: '50% 50%' }}
                   />
                   <motion.div
                     className="framer-1e0yqhx"
                     animate={{ rotate: mobileOpen ? -45 : 0 }}
                     transition={{ duration: 0.34, ease: [0.44, 0, 0.56, 1] }}
-                    style={{ backgroundColor: 'rgb(255, 255, 255)', transformOrigin: '50% 50%' }}
+                    style={{ backgroundColor: barColor, transformOrigin: '50% 50%' }}
                   />
                 </div>
               </div>
@@ -317,7 +313,7 @@ function MobileHeader({ isDarkSection, mobileOpen, setMobileOpen }) {
               style={mobileCtaStyle}
             >
               <div className="framer-5w4ti-container">
-                <HeaderButton href={SIGNUP_URL}>Get started</HeaderButton>
+                <HeaderButton href={CONTACT_URL}>Contact Us</HeaderButton>
               </div>
             </div>
           </motion.div>
@@ -328,9 +324,10 @@ function MobileHeader({ isDarkSection, mobileOpen, setMobileOpen }) {
 }
 
 export default function Header() {
+  const { pathname } = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrollBackdropOpacity, setScrollBackdropOpacity] = useState(0);
-  const isDarkSection = scrollBackdropOpacity > 0.32;
+  const isDarkSection = pathname === '/about' || scrollBackdropOpacity > 0.32;
 
   useEffect(() => {
     let frame = null;
@@ -364,7 +361,12 @@ export default function Header() {
       style={{ opacity: 1, transform: 'none', willChange: 'transform' }}
     >
       <DesktopHeader isDarkSection={isDarkSection} scrollBackdropOpacity={scrollBackdropOpacity} />
-      <MobileHeader isDarkSection={isDarkSection} mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} />
+      <MobileHeader
+        isDarkSection={isDarkSection}
+        mobileOpen={mobileOpen}
+        setMobileOpen={setMobileOpen}
+        scrollBackdropOpacity={scrollBackdropOpacity}
+      />
     </motion.div>
   );
 }

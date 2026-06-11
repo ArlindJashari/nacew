@@ -1,0 +1,89 @@
+/* Header.css — mobile menu. Solid black panel, readable items, no hover
+   states (touch context), intentional full-width CTA. */
+
+/* Open mobile nav → solid black overlay covering bar + menu. */
+.framer-wz7sin.framer-v-xqjeaw {
+  background: #000 !important;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+/* Expanded menu list. */
+.framer-9t1ray {
+  padding: 10px 22px 26px !important;
+  gap: 0 !important;
+}
+
+.framer-9t1ray > [data-framer-component-type='RichTextContainer'] {
+  width: 100%;
+}
+.framer-9t1ray > [data-framer-component-type='RichTextContainer'] p,
+.framer-9t1ray a {
+  text-align: left !important;
+}
+.framer-9t1ray a {
+  display: block;
+  width: 100%;
+  padding: 16px 2px;
+  font-size: 18px;
+  line-height: 1.2;
+  text-decoration: none !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+/* Force readable link text regardless of framer preset color vars. */
+.framer-9t1ray a,
+.framer-9t1ray a *,
+.framer-9t1ray p,
+.framer-9t1ray p * {
+  color: rgba(255, 255, 255, 0.9) !important;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.9) !important;
+}
+/* No hover effect (touch menu); only a subtle pressed state. */
+.framer-9t1ray a:hover,
+.framer-9t1ray a:hover * {
+  color: rgba(255, 255, 255, 0.9) !important;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.9) !important;
+  text-decoration: none !important;
+}
+.framer-9t1ray a:active,
+.framer-9t1ray a:active * {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+}
+
+/* Visible white X when the menu is open (framer left it thin/dark). */
+.framer-v-2rnmh5 .framer-xwg8km,
+.framer-v-2rnmh5 .framer-1e0yqhx {
+  background-color: #fff !important;
+  height: 2.5px !important;
+  opacity: 1 !important;
+  border-radius: 2px;
+}
+
+/* CTA row: full-width, no stray partial divider/border. */
+.framer-z1s5bh {
+  width: 100% !important;
+  margin-top: 18px;
+  padding-top: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+.framer-z1s5bh::before,
+.framer-z1s5bh::after {
+  display: none !important;
+}
+.framer-5w4ti-container {
+  width: 100%;
+}
+.framer-9t1ray .framer-5w4ti-container a {
+  width: 100%;
+  border-bottom: none;
+  justify-content: center;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+}
+.framer-9t1ray .framer-5w4ti-container a:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+}
