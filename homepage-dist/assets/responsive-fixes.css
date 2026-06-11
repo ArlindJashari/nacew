@@ -434,10 +434,21 @@ html:has(.nacew-nav--mobile-open) {
   .wpm-split {
     display: flex !important;
     flex-direction: column !important;
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    height: 100% !important;
     grid-template-columns: none !important;
     grid-template-rows: none !important;
-    height: auto !important;
-    min-height: 0;
+  }
+
+  .wpm-body {
+    overflow: hidden;
+  }
+
+  .wpm-stage {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
   }
 
   .wpm-preview {
@@ -448,6 +459,7 @@ html:has(.nacew-nav--mobile-open) {
 
   .wpm-divider {
     order: 2;
+    flex: 0 0 auto;
     width: 100%;
     height: 1px;
   }
@@ -457,6 +469,11 @@ html:has(.nacew-nav--mobile-open) {
     flex: 1 1 auto;
     min-height: 0;
     padding-left: 0 !important;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    touch-action: pan-y;
+    mask-image: none;
+    -webkit-mask-image: none;
   }
 
   /* smaller phone so the copy below it stays readable */

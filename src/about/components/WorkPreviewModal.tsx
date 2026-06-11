@@ -94,7 +94,7 @@ export function WorkPreviewModal({
   caseStudy,
   sectionIndex,
   onClose,
-  onSectionChange,
+  onSectionChange: _onSectionChange,
 }: WorkPreviewModalProps) {
   const count = caseStudy.sections.length;
   const copyRef = useRef<HTMLDivElement>(null);
@@ -109,10 +109,13 @@ export function WorkPreviewModal({
     setActiveSection(sectionIndex);
     const node = sectionRefs.current[sectionIndex];
     const root = copyRef.current;
-    if (node && root) {
+    if (!node || !root) return;
+
+    // Run once when the modal opens — not on observer-driven section changes.
+    requestAnimationFrame(() => {
       root.scrollTo({ top: node.offsetTop - 8, behavior: "auto" });
-    }
-  }, [sectionIndex, caseStudy.id]);
+    });
+  }, [caseStudy.id, sectionIndex]);
 
   const activeSectionRef = useRef(activeSection);
   activeSectionRef.current = activeSection;
@@ -133,8 +136,8 @@ export function WorkPreviewModal({
         const idx = Number((top.target as HTMLElement).dataset.sectionIndex);
         if (Number.isNaN(idx) || idx === activeSectionRef.current) return;
 
+        // Local only — do not bubble to parent or scrollTo fights user on iOS.
         setActiveSection(idx);
-        onSectionChange(idx);
       },
       {
         root,
@@ -148,7 +151,7 @@ export function WorkPreviewModal({
     });
 
     return () => observer.disconnect();
-  }, [caseStudy.id, onSectionChange]);
+  }, [caseStudy.id]);
 
   useEffect(() => {
     const prev = document.body.style.overflow;
