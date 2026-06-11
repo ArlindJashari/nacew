@@ -1,0 +1,43 @@
+{
+  "headers": [
+    {
+      "source": "/assets/**",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store, no-cache, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/index.html",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        }
+      ]
+    },
+    {
+      "source": "/",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        }
+      ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/about2",
+      "destination": "/about/",
+      "type": 301
+    },
+    {
+      "source": "/about2/**",
+      "destination": "/about/",
+      "type": 301
+    }
+  ]
+}

@@ -100,6 +100,8 @@ if (!fs.existsSync(path.join(aboutDir, 'logo.svg'))) {
   fs.copyFileSync(path.join(webRoot, 'logo.svg'), path.join(aboutDir, 'logo.svg'));
 }
 
+execSync('node scripts/patch-about-deploy.mjs', { cwd: nacewRoot, stdio: 'inherit' });
+
 fs.writeFileSync(
   path.join(webRoot, '_redirects'),
   [

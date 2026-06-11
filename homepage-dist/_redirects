@@ -1,0 +1,6 @@
+/about2      /about/   301
+/about2/*    /about/   301
+/about       /about/index.html   200
+/about/      /about/index.html   200
+/about/*     /about/index.html   200
+/*           /index.html         200

@@ -10,10 +10,6 @@ lerna-debug.log*
 node_modules
 dist
 dist-about
-homepage-dist/about/
-homepage-dist/_redirects
-homepage-dist/serve.json
-homepage-dist/.build-stamp.json
 dist-ssr
 *.local
 
