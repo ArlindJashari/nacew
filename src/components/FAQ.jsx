@@ -175,7 +175,7 @@ const contactWrapStyle = {
   borderTopRightRadius: 24,
 };
 
-function GlowFrame({
+export function GlowFrame({
   className,
   style,
   radius,

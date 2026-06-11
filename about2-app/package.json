@@ -1,0 +1,23 @@
+{
+  "name": "nacew-about2",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "./node_modules/.bin/vite",
+    "build": "./node_modules/.bin/tsc -b && ./node_modules/.bin/vite build",
+    "preview": "./node_modules/.bin/vite preview"
+  },
+  "dependencies": {
+    "motion": "^12.23.12",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@vitejs/plugin-react": "^4.6.0",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5"
+  }
+}

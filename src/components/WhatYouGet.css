@@ -1,0 +1,357 @@
+/* WhatYouGet.css — graphic-first Liveblocks-style panels (monochrome) inside
+   the existing sticky-stack scroll effect. Two sticky panels, two animated
+   cells each. */
+
+#what-you-get .framer-d07aw3,
+#what-you-get .framer-1wb6mxc {
+  height: min-content !important;
+  border-radius: 24px;
+  overflow: visible;
+  /* Keep the pin/stack scroll effect at every breakpoint (framer's mobile
+     CSS reset it to position:relative, which killed the stacking). */
+  position: sticky !important;
+  top: 120px;
+}
+
+/* Tablet + mobile: pin a little higher under the shorter header. */
+@media (max-width: 1279px) {
+  #what-you-get .framer-d07aw3,
+  #what-you-get .framer-1wb6mxc {
+    top: 90px;
+  }
+}
+
+/* Dark breathing room below the last pinned panel so the section does not
+   butt straight into the white Bento section underneath. */
+#what-you-get .framer-uc3xgg {
+  padding-bottom: 168px !important;
+}
+
+.wyg-eyebrow {
+  display: inline-block;
+  font-family: "Inter", "Inter Placeholder", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.wyg-panel {
+  width: 100%;
+  background: #000;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+  font-family: "Inter", "Inter Placeholder", sans-serif;
+}
+
+.wyg-cell {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 40px 40px 0;
+  min-height: 560px;
+}
+.wyg-cell + .wyg-cell {
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.wyg-cell-copy {
+  position: relative;
+  z-index: 2;
+  max-width: 420px;
+}
+
+.wyg-cell-title {
+  margin: 0 0 8px;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.wyg-cell-desc {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.wyg-cell-art {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+}
+
+.wg-art {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Edge-fade overlays — graphic dissolves into the panel at the cell edges,
+   exactly like the liveblocks.io feature cells (3-sided gradient mask). */
+.wyg-fade {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background:
+    linear-gradient(to top, #000 0, transparent 96px),
+    linear-gradient(to left, #000 0, transparent 96px),
+    linear-gradient(to right, #000 0, transparent 96px);
+}
+
+/* Cross-fading uppercase label (Liveblocks "Storage" ↔ "Yjs"). */
+.wg-xlabel {
+  position: absolute;
+  left: 50%;
+  bottom: 16%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  white-space: nowrap;
+}
+.wg-xlabel--node { bottom: 26%; }
+.wg-xlabel-a,
+.wg-xlabel-b {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.4);
+}
+.wg-xlabel-a { animation: wg-fade-a 6s ease-in-out infinite; }
+.wg-xlabel-b { animation: wg-fade-b 6s ease-in-out infinite; }
+@keyframes wg-fade-a {
+  0%, 38% { opacity: 1; filter: blur(0); }
+  50%, 88% { opacity: 0; filter: blur(4px); }
+  100% { opacity: 1; filter: blur(0); }
+}
+@keyframes wg-fade-b {
+  0%, 38% { opacity: 0; filter: blur(4px); }
+  50%, 88% { opacity: 1; filter: blur(0); }
+  100% { opacity: 0; filter: blur(4px); }
+}
+
+/* ════════════ 1. Recurring billing loop ════════════ */
+.wg-loop { display: grid; place-items: center; }
+.wg-loop-svg {
+  position: absolute;
+  width: 230px;
+  height: 230px;
+  max-width: 84%;
+  aspect-ratio: 1;
+  overflow: visible;
+}
+/* Even round dots around the orbit (stroke-dasharray "0 13" + round caps). */
+.wg-loop-track {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.26);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-dasharray: 0 13;
+}
+.wg-loop-orbit {
+  position: absolute;
+  width: min(176px, 64.4%);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  animation: wg-spin 6.5s linear infinite;
+}
+.wg-loop-dot {
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  margin-left: -5px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 12px 1px rgba(255, 255, 255, 0.85);
+}
+@keyframes wg-spin { to { transform: rotate(360deg); } }
+/* Center node matches the storage/sync glyph node. */
+.wg-loop-node {
+  position: relative;
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: radial-gradient(60% 60% at 50% 38%, rgba(255, 255, 255, 0.14), rgba(0, 0, 0, 0.92));
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+.wg-loop-node svg { width: 26px; height: 26px; }
+.wg-xlabel--loop { bottom: 9%; }
+
+/* ════════════ 2. Subscription tool sprawl ════════════ */
+.wg-sprawl { position: absolute; inset: 0; }
+.wg-sprawl-lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.wg-sline {
+  stroke: rgba(255, 255, 255, 0.16);
+  stroke-width: 1;
+  stroke-dasharray: 1.4 5;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+  animation: wg-sline-pulse 3.6s ease-in-out infinite;
+}
+.wg-sline-2 { animation-delay: 0.5s; }
+.wg-sline-3 { animation-delay: 1s; }
+.wg-sline-4 { animation-delay: 1.5s; }
+@keyframes wg-sline-pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.16; }
+}
+.wg-tile {
+  position: absolute;
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.035);
+  display: grid;
+  place-items: center;
+  color: rgba(255, 255, 255, 0.55);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  animation: wg-flicker 3.6s ease-in-out infinite;
+  animation-delay: var(--d);
+}
+.wg-tile svg { width: 20px; height: 20px; }
+@keyframes wg-flicker {
+  0%, 100% { opacity: 0.9; }
+  50% { opacity: 0.28; }
+}
+.wg-t-1 { left: 13%; top: 16%; }
+.wg-t-2 { left: 46%; top: 9%; }
+.wg-t-3 { left: 74%; top: 20%; }
+.wg-t-4 { left: 27%; top: 47%; }
+.wg-t-5 { left: 59%; top: 44%; }
+.wg-t-6 { left: 17%; top: 76%; }
+.wg-t-7 { left: 67%; top: 71%; }
+
+/* ════════════ 3. Build your own: feed → platform → server ════════════ */
+.wg-sync { display: flex; align-items: center; justify-content: center; }
+.wg-sync-svg { width: 100%; height: 100%; color: rgba(255, 255, 255, 0.5); }
+.wg-flow {
+  stroke: rgba(255, 255, 255, 0.3);
+  stroke-width: 2;
+  stroke-dasharray: 1.5 7;
+  stroke-linecap: round;
+  animation: wg-dash 1.1s linear infinite;
+}
+.wg-flow-2 { animation-delay: -0.4s; }
+.wg-flow-3 { animation-delay: -0.7s; }
+@keyframes wg-dash { to { stroke-dashoffset: -17; } }
+.wg-node {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 86px;
+  height: 86px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: radial-gradient(60% 60% at 50% 38%, rgba(255, 255, 255, 0.14), rgba(0, 0, 0, 0.92));
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+.wg-node svg { width: 30px; height: 30px; }
+.wg-node-ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  animation: wg-pulse 2.4s ease-out infinite;
+}
+@keyframes wg-pulse {
+  0% { transform: scale(1); opacity: 0.7; }
+  70% { transform: scale(1.5); opacity: 0; }
+  100% { opacity: 0; }
+}
+.wg-server {
+  position: absolute;
+  right: 9%;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.5);
+}
+.wg-server svg { width: 38px; height: 54px; }
+
+/* ════════════ 4. Globe + Ping ════════════ */
+.wg-globe { display: grid; place-items: center; }
+.wg-globe-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  mix-blend-mode: screen;
+}
+.wg-ping-ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 40px;
+  height: 40px;
+  margin: -20px 0 0 -20px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.85);
+  animation: wg-ping 1s ease-out forwards;
+}
+@keyframes wg-ping {
+  0% { transform: scale(0.2); opacity: 0.9; }
+  100% { transform: scale(5); opacity: 0; }
+}
+.wg-ping-btn {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  padding: 9px 18px;
+  border-radius: 9px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: default;
+  pointer-events: auto;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+/* ════════════ Responsive ════════════ */
+@media (max-width: 809px) {
+  #what-you-get .framer-d07aw3,
+  #what-you-get .framer-1wb6mxc {
+    top: 90px;
+  }
+  .wyg-panel { grid-template-columns: 1fr; }
+  .wyg-cell {
+    min-height: 440px;
+    padding: 30px 24px 0;
+  }
+  .wyg-cell + .wyg-cell {
+    border-left: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wg-flow, .wg-node-ring, .wg-loop-orbit, .wg-tile, .wg-sline, .wg-ping-ring,
+  .wg-xlabel-a, .wg-xlabel-b {
+    animation: none !important;
+  }
+  .wg-xlabel-b { opacity: 0; }
+}

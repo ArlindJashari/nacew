@@ -1,0 +1,576 @@
+/* src/components/BranchCTA.css */
+
+/* Coming Soon Section */
+.branch-cta-section {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(1100px 620px at 50% 58%, rgba(112, 100, 198, 0.14), transparent 68%),
+    linear-gradient(180deg, #000 0%, #000 20%, #050008 34%, #10001a 66%, #130026 100%);
+  color: #f4efeb;
+  width: 100%;
+}
+
+.branch-cta-container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1152px;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  padding-top: 8rem;
+  padding-bottom: 3rem;
+  text-align: left;
+  position: relative;
+  z-index: 2;
+}
+
+@media (min-width: 1024px) {
+  .branch-cta-container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.branch-cta-header-row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 36px;
+  width: 100%;
+}
+
+.branch-cta-header-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  flex: 1 0 0;
+}
+
+.branch-cta-header-right {
+  flex: 1 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.branch-cta-header-right .branch-cta-desc {
+  margin-top: 0;
+  max-width: 350px;
+}
+
+/* gap handled by header-left gap:24px now */
+.branch-cta-header-left .branch-cta-heading {
+  margin-top: 0;
+}
+
+@media (max-width: 809px) {
+  .branch-cta-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+  .branch-cta-header-right {
+    flex: none;
+    justify-content: flex-start;
+  }
+}
+
+.branch-cta-badge-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 393px;
+  padding: 4px 16px;
+}
+
+.branch-cta-badge-wrap::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgb(255, 255, 255);
+}
+
+.branch-cta-badge {
+  font-family: "Inter", "Inter Placeholder", sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.09px;
+  font-weight: 400;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.branch-cta-heading {
+  font-family: "Inter", "Inter Placeholder", sans-serif;
+  color: #fff;
+  margin-top: 19px;
+  font-size: 32px;
+  line-height: 1.35em;
+  letter-spacing: -0.04em;
+  width: 100%;
+  max-width: 800px;
+  font-weight: 500;
+}
+
+@media (min-width: 810px) {
+  .branch-cta-heading {
+    font-size: 36px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .branch-cta-heading {
+    font-size: 40px;
+  }
+}
+
+.branch-cta-desc {
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 1.5rem;
+  font-family: "Inter", "Inter Placeholder", sans-serif;
+  font-size: 16px;
+  line-height: 1.5em;
+  letter-spacing: -0.01em;
+  font-weight: 400;
+  max-width: 431px;
+}
+
+
+.branch-cta-graphic-wrap {
+  position: absolute;
+  bottom: 3rem;
+  width: 700px;
+  left: max(20px, calc((100vw - 1152px) / 2));
+}
+
+@media (min-width: 640px) {
+  .branch-cta-graphic-wrap {
+    width: 100vw;
+  }
+}
+
+/* Spacer reserves height for absolutely-positioned graphic */
+.branch-cta-spacer {
+  margin-top: 8rem;
+  height: calc(700px * 740 / 1200 - 60px);
+}
+
+@media (min-width: 640px) {
+  .branch-cta-spacer {
+    height: calc(100vw * 740 / 1200 - 100px);
+  }
+}
+
+/* Cycling UI screen examples (same mockups as the Platforms section) */
+.branch-cta-screen {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1200 / 740;
+  border-radius: 14px;
+  overflow: hidden;
+  background: transparent;
+  box-shadow:
+    0 120px 220px rgba(0, 0, 0, 0.78),
+    0 42px 120px rgba(54, 10, 88, 0.48),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+.branch-cta-screen-slide {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+/* Background glows for the CTA graphic section */
+.branch-glow-1 {
+  pointer-events: none;
+  position: absolute;
+  display: none;
+  left: calc(100vw * -63 / 1512);
+  top: calc(100vw * 216 / 1512);
+  width: calc(100vw * 63 / 1512);
+  height: calc(100vw * 66 / 1512);
+  background-color: #d9d9d9;
+  opacity: 0.04;
+  mix-blend-mode: plus-lighter;
+}
+
+.branch-glow-2 {
+  pointer-events: none;
+  position: absolute;
+  display: none;
+  left: calc(100vw * 1255 / 1512);
+  top: calc(100vw * -99 / 1512);
+  width: calc(100vw * 164 / 1512);
+  height: calc(100vw * 50 / 1512);
+  background-color: #d9d9d9;
+  opacity: 0.04;
+  mix-blend-mode: plus-lighter;
+}
+
+.branch-glow-3 {
+  pointer-events: none;
+  position: absolute;
+  display: none;
+  left: calc(100vw * 1205 / 1512);
+  top: calc(100vw * -50 / 1512);
+  width: calc(100vw * 50 / 1512);
+  height: calc(100vw * 50 / 1512);
+  background-color: #d9d9d9;
+  opacity: 0.04;
+  mix-blend-mode: plus-lighter;
+}
+
+@media (min-width: 640px) {
+  .branch-glow-1, .branch-glow-2, .branch-glow-3 {
+    display: block;
+  }
+}
+
+.branch-gradient-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 400px;
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgba(19, 0, 38, 0) 0%, #130026 100%);
+  z-index: 10;
+}
+
+/* Install CLI Section */
+.branch-install-section {
+  background-color: #130026;
+  color: #f4efeb;
+  width: 100%;
+}
+
+.branch-install-container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1152px;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  text-align: center;
+}
+
+@media (min-width: 1024px) {
+  .branch-install-container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.branch-install-heading {
+  font-family: "Fragment Mono", serif;
+  font-size: 44px;
+  line-height: 42px;
+  color: #f4efeb;
+  font-weight: 400;
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .branch-install-heading {
+    font-size: 52px;
+    line-height: 48px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .branch-install-heading {
+    font-size: 60px;
+    line-height: 55px;
+  }
+}
+
+.branch-install-button {
+  margin-top: 3rem;
+  display: inline-flex;
+  height: 52px;
+  width: 365px;
+  max-width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  border-radius: 4px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  text-align: center;
+  transition-property: all;
+  transition-duration: 150ms;
+  background: rgba(42, 16, 56, 0.8);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+@media (min-width: 640px) {
+  .branch-install-button {
+    justify-content: space-between;
+    text-align: left;
+  }
+}
+
+.branch-install-button:hover {
+  background: rgba(42, 16, 56, 0.95);
+}
+
+.branch-install-button-text {
+  font-family: var(--font-inter, Inter), sans-serif;
+  font-size: 13px;
+  line-height: 24px;
+  font-weight: 500;
+  letter-spacing: -0.13px;
+  white-space: nowrap;
+}
+
+@media (min-width: 640px) {
+  .branch-install-button-text {
+    font-size: 15px;
+  }
+}
+
+.branch-install-button-cmd {
+  color: #5eead4;
+}
+
+.branch-install-button-arg {
+  color: #f4efeb;
+}
+
+/* Footer Section */
+.branch-footer-container {
+  position: relative;
+  overflow: hidden;
+  background-color: #130026;
+  color: #f4efeb;
+  min-height: 38vw;
+  width: 100%;
+}
+
+.branch-footer-glow-1 {
+  pointer-events: none;
+  position: absolute;
+  top: 1vw;
+  left: calc(100vw * 34 / 1512);
+  width: calc(100vw * 92 / 1512);
+  height: calc(100vw * 64 / 1512);
+  background-color: #d9d9d9;
+  opacity: 0.04;
+  mix-blend-mode: plus-lighter;
+}
+
+.branch-footer-glow-2 {
+  pointer-events: none;
+  position: absolute;
+  top: calc(100vw * 77 / 1512);
+  left: calc(100vw * -242 / 1512);
+  width: calc(100vw * 276 / 1512);
+  height: calc(100vw * 142 / 1512);
+  background-color: #d9d9d9;
+  opacity: 0.04;
+  mix-blend-mode: plus-lighter;
+}
+
+.branch-footer-glow-3 {
+  pointer-events: none;
+  position: absolute;
+  top: calc(100vw * 432 / 1512);
+  left: calc(100vw * -140 / 1512);
+  width: calc(100vw * 244 / 1512);
+  height: calc(100vw * 42 / 1512);
+  background-color: #1c0038; /* dark purple */
+}
+
+.branch-footer-glow-4 {
+  pointer-events: none;
+  position: absolute;
+  top: calc(100vw * 473 / 1512);
+  left: calc(100vw * 103 / 1512);
+  width: calc(100vw * 60 / 1512);
+  height: calc(100vw * 60 / 1512);
+  background-color: #847cc9;
+}
+
+.branch-footer-glow-5 {
+  pointer-events: none;
+  position: absolute;
+  top: 1vw;
+  left: calc(100vw * 1420 / 1512);
+  width: calc(100vw * 164 / 1512);
+  height: calc(100vw * 50 / 1512);
+  background-color: #d9d9d9;
+  opacity: 0.04;
+  mix-blend-mode: plus-lighter;
+}
+
+.branch-footer-glow-6 {
+  pointer-events: none;
+  position: absolute;
+  top: calc(100vw * 64 / 1512);
+  left: calc(100vw * 1370 / 1512);
+  width: calc(100vw * 50 / 1512);
+  height: calc(100vw * 50 / 1512);
+  background-color: #d9d9d9;
+  opacity: 0.04;
+  mix-blend-mode: plus-lighter;
+}
+
+.branch-footer-glow-7 {
+  pointer-events: none;
+  position: absolute;
+  top: calc(100vw * 143 / 1512);
+  left: calc(100vw * 1454 / 1512);
+  width: calc(100vw * 77 / 1512);
+  height: calc(100vw * 77 / 1512);
+  background-color: #1c0038; /* dark purple */
+}
+
+.branch-footer-glow-8 {
+  pointer-events: none;
+  position: absolute;
+  top: calc(100vw * 380 / 1512);
+  left: calc(100vw * 1365 / 1512);
+  width: calc(100vw * 89 / 1512);
+  height: calc(100vw * 89 / 1512);
+  background-color: #d9d9d9;
+  opacity: 0.04;
+  mix-blend-mode: plus-lighter;
+}
+
+.branch-footer-logo-wrap {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  width: calc(100vw * 1152 / 1512);
+  padding-top: calc(100vw * 86 / 1512);
+  padding-bottom: calc(100vw * 41 / 1512);
+}
+
+.branch-footer-logo {
+  display: block;
+  height: auto;
+  width: 100%;
+  user-select: none;
+  opacity: 0.05;
+  transition: opacity 0.3s ease, filter 0.3s ease;
+  filter: brightness(0) invert(1);
+}
+
+.branch-footer-logo:hover {
+  opacity: 1;
+  filter: none;
+}
+
+.branch-footer-links {
+  position: relative;
+  margin: 0 auto;
+  width: calc(100vw * 1152 / 1512);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: calc(100vw * 30 / 1512);
+  border-bottom: 1px solid rgba(244, 239, 235, 0.08);
+  color: rgba(244, 239, 235, 0.55);
+  font-family: var(--font-inter, Inter), sans-serif;
+  font-size: 14px;
+}
+
+.branch-footer-colnav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 28px;
+}
+
+.branch-footer-social {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.branch-footer-social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(244, 239, 235, 0.12);
+  color: rgba(244, 239, 235, 0.65);
+  transition: color 150ms, border-color 150ms, background 150ms;
+}
+
+.branch-footer-social-link svg {
+  width: 17px;
+  height: 17px;
+}
+
+.branch-footer-social-link:hover {
+  color: #f4efeb;
+  border-color: rgba(244, 239, 235, 0.32);
+  background: rgba(244, 239, 235, 0.06);
+}
+
+.branch-footer-bottom {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  color: rgba(244, 239, 235, 0.5);
+  width: calc(100vw * 1152 / 1512);
+  padding-top: calc(100vw * 24 / 1512);
+  padding-bottom: calc(100vw * 40 / 1512);
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.09px;
+  font-family: var(--font-inter, Inter), sans-serif;
+}
+
+.branch-footer-nav {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.branch-footer-link {
+  color: inherit;
+  text-decoration: none;
+  transition: color 150ms;
+}
+
+.branch-footer-link:hover {
+  color: #f4efeb;
+}
+
+/* Explicit resets to remove any dividing borders between FAQ and CTA */
+.framer-pAcom,
+.framer-kj696b,
+.framer-1hob6cd,
+.branch-cta-section {
+  border-bottom: none !important;
+  border-top: none !important;
+}
+
+.framer-pAcom:after,
+.framer-kj696b:after,
+.framer-1hob6cd:after,
+.branch-cta-section:after {
+  border-bottom-width: 0px !important;
+  border-top-width: 0px !important;
+}

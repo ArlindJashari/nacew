@@ -1,0 +1,140 @@
+/* Testimonials.css — dark section with sticky-stacked testimonial cards.
+   Scroll effect mirrors the opennote.com feature-card stack: cards pin to the
+   viewport and pile up with a slight rotation + scale-down as the next rises. */
+
+.testi-section {
+  position: relative;
+  background: #000;
+  color: #f4f6fb;
+  width: 100%;
+  padding: 140px 0 80px;
+  overflow: clip;
+  font-family: "Inter", "Inter Placeholder", sans-serif;
+}
+
+.testi-head {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 32px;
+  text-align: center;
+}
+
+.testi-eyebrow {
+  margin: 0 0 18px;
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.42);
+}
+
+.testi-title {
+  margin: 0;
+  font-family: "Fragment Mono", serif;
+  font-weight: 400;
+  font-size: clamp(38px, 5vw, 60px);
+  line-height: 1.04;
+  letter-spacing: -0.01em;
+  color: #f4efeb;
+}
+
+/* Scroll track — its height drives how long the stack stays pinned. */
+.testi-stack {
+  position: relative;
+  max-width: 760px;
+  margin: 56px auto 0;
+  padding: 0 24px;
+}
+
+.testi-card-wrap {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  height: 62vh;
+  align-items: flex-start;
+  padding-top: 0;
+  pointer-events: none;
+}
+
+.testi-card-wrap:last-child {
+  height: auto;
+  min-height: 54vh;
+}
+
+.testi-card {
+  position: relative;
+  pointer-events: auto;
+  width: min(640px, 100%);
+  margin: 0;
+  padding: 48px 48px 40px;
+  border-radius: 28px;
+  transform-origin: top center;
+  box-shadow: 0 40px 90px -30px rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  min-height: 320px;
+}
+
+.testi-quote-mark {
+  font-family: "Newsreader", Georgia, serif;
+  font-size: 88px;
+  line-height: 0.5;
+  height: 44px;
+  opacity: 0.35;
+}
+
+.testi-quote {
+  margin: 0;
+  font-family: "Newsreader", Georgia, serif;
+  font-size: clamp(22px, 2.6vw, 30px);
+  line-height: 1.32;
+  font-weight: 450;
+  letter-spacing: -0.01em;
+  flex: 1;
+}
+
+.testi-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.testi-name {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.testi-role {
+  font-size: 14px;
+  opacity: 0.66;
+}
+
+@media (max-width: 640px) {
+  .testi-section {
+    padding: 96px 0 160px;
+  }
+  .testi-card {
+    padding: 36px 28px 32px;
+    border-radius: 22px;
+    min-height: 280px;
+  }
+  .testi-card-wrap {
+    top: 0;
+  }
+}
+
+/* Respect reduced-motion: drop the pin/scale, render a simple list. */
+@media (prefers-reduced-motion: reduce) {
+  .testi-card-wrap {
+    position: relative;
+    height: auto;
+    margin-bottom: 28px;
+  }
+  .testi-card {
+    position: relative;
+    transform: none !important;
+    top: 0 !important;
+  }
+}

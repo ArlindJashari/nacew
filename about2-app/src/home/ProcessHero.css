@@ -1,0 +1,266 @@
+/* Process section only — index light theme (#fff / #121820) */
+.ph {
+  --ph-bg: #ffffff;
+  --ph-ink: #121820;
+  --ph-ink-muted: rgba(18, 24, 32, 0.55);
+  --ph-ink-soft: rgba(18, 24, 32, 0.45);
+  --ph-border: rgba(18, 24, 32, 0.12);
+  --ph-pill-bg: rgba(255, 255, 255, 0.72);
+  --ph-shadow: rgba(18, 24, 32, 0.14);
+  --ph-shadow-hover: rgba(18, 24, 32, 0.22);
+
+  position: relative;
+  background: #000;
+  color: var(--ph-ink);
+  overflow: clip;
+}
+
+/* ---- Scroll block (pinned stage) ---- */
+.ph-block {
+  position: relative;
+  height: 300vh;
+  background: #000;
+}
+
+/* White continuation after sticky research stage — same surface, no second card */
+.ph-tail {
+  position: relative;
+  z-index: 1;
+  background: var(--ph-bg);
+}
+
+.ph-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--ph-bg);
+  transform-origin: 50% 42%;
+  will-change: transform, border-radius;
+}
+
+.ph-stage-fade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 120px;
+  pointer-events: none;
+  z-index: 4;
+}
+.ph-stage-fade-top {
+  top: 0;
+  background: linear-gradient(180deg, var(--ph-bg) 0%, transparent 100%);
+}
+.ph-stage-fade-bottom {
+  bottom: 0;
+  background: linear-gradient(0deg, var(--ph-bg) 0%, transparent 100%);
+}
+
+/* ---- Center text ---- */
+.ph-center {
+  position: relative;
+  z-index: 6;
+  width: min(760px, 88vw);
+  text-align: left;
+  will-change: transform;
+  pointer-events: none;
+}
+
+.ph-lead {
+  font-family: var(--f-med, "Inter", sans-serif);
+  font-size: clamp(24px, 3.2vw, 40px);
+  line-height: 1.32;
+  letter-spacing: -0.02em;
+  margin: 0;
+  color: var(--ph-ink);
+}
+
+.ph-word {
+  display: inline-block;
+  margin-right: 0.28em;
+  will-change: opacity, transform;
+}
+
+/* ---- Floating elements ---- */
+.ph-card {
+  position: absolute;
+  z-index: 5;
+  border: none;
+  padding: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 24px 64px var(--ph-shadow);
+  will-change: transform, opacity;
+  cursor: pointer;
+  pointer-events: auto;
+  background: none;
+  transition:
+    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    z-index 0s;
+}
+
+.ph-card:hover {
+  z-index: 6;
+  box-shadow: 0 32px 80px var(--ph-shadow-hover);
+}
+
+.ph-card:focus-visible {
+  outline: 2px solid rgba(18, 24, 32, 0.35);
+  outline-offset: 3px;
+}
+.ph-card::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 42%;
+  background: linear-gradient(0deg, var(--ph-bg) 0%, transparent 100%);
+  pointer-events: none;
+}
+.ph-card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform-origin: center center;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ph-card:hover img {
+  transform: scale(1.07);
+}
+
+.ph-card-a {
+  width: 210px;
+  height: 272px;
+  left: 3.5%;
+  top: 11%;
+}
+.ph-card-b {
+  width: 136px;
+  height: 196px;
+  left: 8%;
+  bottom: 14%;
+  border-radius: 22px;
+}
+.ph-card-c {
+  width: 200px;
+  height: 132px;
+  right: 6%;
+  top: 16%;
+  border-radius: 18px;
+}
+.ph-card-d {
+  width: 176px;
+  height: 220px;
+  right: 5%;
+  top: 30%;
+  border-radius: 18px;
+}
+.ph-card-hero {
+  width: min(360px, 44vw);
+  height: min(240px, 30vw);
+  left: calc(50% - min(180px, 22vw));
+  bottom: 6%;
+  border-radius: 24px;
+}
+
+.ph-pill {
+  position: absolute;
+  z-index: 2;
+  font-family: var(--f-reg, "Inter", sans-serif);
+  font-size: 13px;
+  color: var(--ph-ink-muted);
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: var(--ph-pill-bg);
+  border: 1px solid var(--ph-border);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.72);
+  white-space: nowrap;
+  will-change: transform, opacity;
+}
+.ph-pill-1 {
+  right: 8%;
+  top: 12%;
+}
+.ph-pill-2 {
+  left: 6%;
+  top: 38%;
+}
+.ph-pill-3 {
+  right: 10%;
+  bottom: 22%;
+}
+.ph-pill-4 {
+  left: 12%;
+  bottom: 10%;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 900px) {
+  .ph-block {
+    height: 260vh;
+  }
+  .ph-card-a {
+    width: 130px;
+    height: 168px;
+    left: 2%;
+    top: 8%;
+  }
+  .ph-card-b {
+    width: 96px;
+    height: 140px;
+    left: 4%;
+    bottom: 18%;
+  }
+  .ph-card-hero {
+    width: min(280px, 72vw);
+    height: 160px;
+    bottom: 8%;
+  }
+  .ph-card-c {
+    width: 150px;
+    height: 100px;
+    right: 3%;
+    top: 12%;
+  }
+  .ph-card-d {
+    width: 140px;
+    height: 176px;
+    right: 3%;
+  }
+  .ph-pill {
+    font-size: 11px;
+    padding: 6px 11px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ph-stage {
+    transform: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+
+  .ph-word {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .ph-card,
+  .ph-pill {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .ph-card:hover img {
+    transform: none;
+  }
+  .ph-center {
+    transform: none !important;
+  }
+}

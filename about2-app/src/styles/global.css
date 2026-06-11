@@ -1,0 +1,92 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+}
+
+:root {
+  --f-inter: "Inter", system-ui, sans-serif;
+  --f-mono: "Fragment Mono", ui-monospace, monospace;
+}
+
+body {
+  background: #000;
+  color: #fff;
+  font-family: var(--f-inter);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+.hl {
+  color: #fff;
+}
+
+.glow-frame {
+  position: relative;
+  border-radius: var(--gf-radius);
+  background: var(--gf-bg);
+  overflow: hidden;
+}
+
+.glow-frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    280px circle at var(--gf-x) var(--gf-y),
+    var(--gf-glow),
+    transparent 65%
+  );
+  opacity: var(--gf-on);
+  transition: opacity 0.2s;
+  pointer-events: none;
+}
+
+.glow-frame-inner {
+  position: relative;
+  z-index: 1;
+  margin: 1px;
+  border-radius: var(--gf-inner-radius);
+  background: var(--gf-inner-bg);
+}
+
+.glow-frame--fade-bottom .glow-frame-inner::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 55%;
+  z-index: 0;
+  background: linear-gradient(
+    to top,
+    #000 0%,
+    rgba(0, 0, 0, 0.92) 28%,
+    rgba(0, 0, 0, 0.45) 58%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+.glow-frame--fade-bottom .glow-frame-inner > * {
+  position: relative;
+  z-index: 1;
+}
