@@ -4,13 +4,16 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const nacewRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const webRoot = path.resolve(nacewRoot, '../Nacew : WEb');
 const homepageDist = path.join(nacewRoot, 'homepage-dist');
+const isVercel = process.env.VERCEL === '1';
+const webRoot = isVercel
+  ? homepageDist
+  : path.resolve(nacewRoot, '../Nacew : WEb');
 
 const HOMEPAGE_JS = 'index-C58hJQyr.js';
 const HOMEPAGE_CSS = 'index-DGigVuJC.css';
 
-if (!fs.existsSync(webRoot)) {
+if (!isVercel && !fs.existsSync(webRoot)) {
   console.error(`Deploy folder not found: ${webRoot}`);
   process.exit(1);
 }
@@ -71,7 +74,9 @@ execSync('node scripts/patch-homepage-testi-stage.mjs', { cwd: nacewRoot, stdio:
 execSync('node scripts/guard-homepage-dist.mjs', { cwd: nacewRoot, stdio: 'inherit' });
 
 // NEVER rsync dist/ here — only the frozen Netlify homepage bundle.
-execSync(`rsync -a --delete "${homepageDist}/" "${webRoot}/"`, { stdio: 'inherit' });
+if (webRoot !== homepageDist) {
+  execSync(`rsync -a --delete "${homepageDist}/" "${webRoot}/"`, { stdio: 'inherit' });
+}
 assertNetlifyHomepage(webRoot);
 
 execSync('npm run build:about', { cwd: nacewRoot, stdio: 'inherit' });
@@ -150,4 +155,8 @@ const buildStamp = {
 };
 fs.writeFileSync(path.join(webRoot, '.build-stamp.json'), `${JSON.stringify(buildStamp, null, 2)}\n`);
 
-console.log(`synced Netlify homepage + /about → ${webRoot}`);
+console.log(
+  isVercel
+    ? `Vercel deploy ready in homepage-dist/ (+ /about)`
+    : `synced Netlify homepage + /about → ${webRoot}`,
+);

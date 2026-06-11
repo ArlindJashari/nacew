@@ -4,7 +4,9 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
 const root = path.dirname(fileURLToPath(import.meta.url));
-const webAboutDir = path.resolve(root, '../Nacew : WEb/about');
+const webAboutDir = process.env.VERCEL === '1'
+  ? path.resolve(root, 'homepage-dist/about')
+  : path.resolve(root, '../Nacew : WEb/about');
 
 export default defineConfig({
   plugins: [react()],
