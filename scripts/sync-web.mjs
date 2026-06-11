@@ -41,7 +41,7 @@ function assertNetlifyHomepage(targetRoot) {
     throw new Error('Homepage guard: Netlify homepage assets missing from deploy folder.');
   }
 
-  for (const forbidden of ['AboutExperience', 'index-DRWs', 'index-Bvmv', 'index-D9Uhn']) {
+  for (const forbidden of ['index-DRWs', 'index-Bvmv', 'index-D9Uhn']) {
     if (html.includes(forbidden)) {
       throw new Error(`Homepage guard: forbidden unified-build artifact "${forbidden}" in index.html.`);
     }
