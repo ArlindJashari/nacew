@@ -1,0 +1,121 @@
+/* Midu.design-matched meta effects (sun loop + scroll shimmer) */
+
+.hero-sun-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  animation: hero-sun-spin 5s linear infinite;
+}
+
+.hero-sun-icon svg {
+  display: block;
+  width: 14px;
+  height: 14px;
+}
+
+@keyframes hero-sun-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.hero-scroll-prompt {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 0;
+  pointer-events: none;
+}
+
+.hero-scroll-shimmer {
+  position: relative;
+  display: inline-block;
+  min-width: 101px;
+  line-height: 1;
+  user-select: none;
+}
+
+.hero-scroll-shimmer__base {
+  margin: 0;
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.hero-scroll-shimmer__shine {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1;
+  color: transparent;
+  pointer-events: none;
+  background: linear-gradient(
+    67deg,
+    transparent 0%,
+    transparent 22.4%,
+    rgb(255, 255, 255) 50%,
+    transparent 77.6%,
+    transparent 100%
+  );
+  background-size: 200% 200%;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: hero-scroll-shimmer 3s linear infinite;
+}
+
+@keyframes hero-scroll-shimmer {
+  0% {
+    background-position: 200% 50%;
+  }
+  100% {
+    background-position: -100% 50%;
+  }
+}
+
+.hero-scroll-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 8px;
+  height: 10px;
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+
+.hero-scroll-arrow svg {
+  display: block;
+  width: 8px;
+  height: 10px;
+}
+
+@media (max-width: 809.98px) {
+  .hero-scroll-shimmer__base,
+  .hero-scroll-shimmer__shine {
+    font-size: 11px;
+  }
+
+  .hero-scroll-shimmer {
+    min-width: 88px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-sun-icon,
+  .hero-scroll-shimmer__shine {
+    animation: none;
+  }
+}

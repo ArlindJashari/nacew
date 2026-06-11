@@ -1,0 +1,189 @@
+/* Lightweight about-style grain — one blob layer, GPU-friendly. */
+.framer-1ed9fxm {
+  background-color: transparent !important;
+  /* Fora top radial — long fade into grain, no middle dark band */
+  background-image: radial-gradient(
+    200% 83% at 50% 0,
+    #1b2228 0%,
+    #353f44 32%,
+    rgba(53, 63, 68, 0.55) 44%,
+    rgba(53, 63, 68, 0.12) 54%,
+    transparent 68%
+  ) !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+  will-change: auto !important;
+  contain: paint;
+}
+
+.hero-grain {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  contain: strict;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 20%,
+    rgba(0, 0, 0, 0.1) 30%,
+    rgba(0, 0, 0, 0.45) 40%,
+    rgba(0, 0, 0, 0.88) 50%,
+    rgba(0, 0, 0, 0.95) 64%,
+    rgba(0, 0, 0, 0.75) 82%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 20%,
+    rgba(0, 0, 0, 0.1) 30%,
+    rgba(0, 0, 0, 0.45) 40%,
+    rgba(0, 0, 0, 0.88) 50%,
+    rgba(0, 0, 0, 0.95) 64%,
+    rgba(0, 0, 0, 0.75) 82%,
+    transparent 100%
+  );
+}
+
+/* Grain only on colored glow — not flat dark top */
+.hero-grain-blob,
+.hero-grain-noise {
+  -webkit-mask-image:
+    radial-gradient(52% 48% at 33% 74%, #000 0%, #000 40%, transparent 72%),
+    radial-gradient(34% 36% at 18% 58%, #000 0%, transparent 64%),
+    radial-gradient(48% 60% at 56% 88%, #000 0%, transparent 68%),
+    radial-gradient(40% 44% at 70% 70%, #000 0%, transparent 70%);
+  mask-image:
+    radial-gradient(52% 48% at 33% 74%, #000 0%, #000 40%, transparent 72%),
+    radial-gradient(34% 36% at 18% 58%, #000 0%, transparent 64%),
+    radial-gradient(48% 60% at 56% 88%, #000 0%, transparent 68%),
+    radial-gradient(40% 44% at 70% 70%, #000 0%, transparent 70%);
+  -webkit-mask-composite: source-over;
+  mask-composite: add;
+}
+
+.hero-grain-blob-wrap {
+  position: absolute;
+  inset: -18%;
+  transform: translateZ(0);
+  will-change: transform;
+  animation: hero-grain-blob-drift 16s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.hero-grain-blob {
+  position: absolute;
+  inset: 0;
+  opacity: 0.88;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  transition: background 1s ease;
+  background:
+    radial-gradient(52% 48% at 33% 74%, rgba(205, 175, 255, 0.82) 0%, rgba(160, 105, 245, 0.45) 32%, transparent 70%),
+    radial-gradient(34% 36% at 18% 58%, rgba(232, 216, 255, 0.55) 0%, transparent 62%),
+    radial-gradient(48% 60% at 56% 88%, rgba(126, 64, 214, 0.48) 0%, transparent 66%),
+    radial-gradient(40% 44% at 70% 70%, rgba(168, 96, 240, 0.32) 0%, transparent 68%);
+}
+
+.framer-1ed9fxm[data-hero-tab='1'] .hero-grain-blob,
+.framer-1ed9fxm[data-hero-tab="1"] .hero-grain-blob {
+  background:
+    radial-gradient(52% 48% at 33% 74%, rgba(255, 185, 188, 0.82) 0%, rgba(210, 95, 100, 0.45) 32%, transparent 70%),
+    radial-gradient(34% 36% at 18% 58%, rgba(255, 210, 212, 0.55) 0%, transparent 62%),
+    radial-gradient(48% 60% at 56% 88%, rgba(190, 70, 75, 0.48) 0%, transparent 66%),
+    radial-gradient(40% 44% at 70% 70%, rgba(200, 85, 90, 0.32) 0%, transparent 68%);
+}
+
+.framer-1ed9fxm[data-hero-tab='2'] .hero-grain-blob,
+.framer-1ed9fxm[data-hero-tab="2"] .hero-grain-blob {
+  background:
+    radial-gradient(52% 48% at 33% 74%, rgba(170, 225, 235, 0.82) 0%, rgba(70, 155, 168, 0.45) 32%, transparent 70%),
+    radial-gradient(34% 36% at 18% 58%, rgba(195, 240, 248, 0.55) 0%, transparent 62%),
+    radial-gradient(48% 60% at 56% 88%, rgba(45, 135, 148, 0.48) 0%, transparent 66%),
+    radial-gradient(40% 44% at 70% 70%, rgba(60, 148, 160, 0.32) 0%, transparent 68%);
+}
+
+.framer-1ed9fxm[data-hero-tab='3'] .hero-grain-blob,
+.framer-1ed9fxm[data-hero-tab="3"] .hero-grain-blob {
+  background:
+    radial-gradient(52% 48% at 33% 74%, rgba(195, 230, 165, 0.82) 0%, rgba(115, 160, 75, 0.45) 32%, transparent 70%),
+    radial-gradient(34% 36% at 18% 58%, rgba(210, 240, 185, 0.55) 0%, transparent 62%),
+    radial-gradient(48% 60% at 56% 88%, rgba(75, 125, 45, 0.48) 0%, transparent 66%),
+    radial-gradient(40% 44% at 70% 70%, rgba(95, 140, 58, 0.32) 0%, transparent 68%);
+}
+
+.hero-grain-noise {
+  position: absolute;
+  inset: 0;
+  opacity: 0.38;
+  pointer-events: none;
+  mix-blend-mode: soft-light;
+  transform: translateZ(0);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  animation: hero-grain-noise-shift 3s steps(3) infinite;
+}
+
+@keyframes hero-grain-blob-drift {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  25% { transform: translate3d(6%, -4%, 0) scale(1.06); }
+  50% { transform: translate3d(-5%, 7%, 0) scale(1.08); }
+  75% { transform: translate3d(7%, 3%, 0) scale(1.04); }
+  100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes hero-grain-noise-shift {
+  0% { transform: translate3d(0, 0, 0); }
+  33% { transform: translate3d(-12px, 8px, 0); }
+  66% { transform: translate3d(10px, -10px, 0); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+
+/* Dark hero text — matches fora.so / header dark theme */
+#hero .framer-1ke5g3l h1.framer-text,
+#hero .framer-1ke5g3l,
+#hero .framer-1ke5g3l .framer-text,
+#hero .framer-1ke5g3l p,
+#hero .framer-1ke5g3l span {
+  --framer-text-color: rgba(255, 255, 255, 0.92) !important;
+  color: rgba(255, 255, 255, 0.92) !important;
+}
+
+#hero .framer-jzdou5 p.framer-text,
+#hero .framer-jzdou5,
+#hero .framer-jzdou5 .framer-text,
+#hero .framer-jzdou5 p,
+#hero .framer-jzdou5 span {
+  --framer-text-color: rgba(255, 255, 255, 0.68) !important;
+  color: rgba(255, 255, 255, 0.68) !important;
+}
+
+#hero .framer-johFn {
+  --border-color: rgba(255, 255, 255, 0.12) !important;
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+
+#hero .framer-r48zlf,
+#hero .framer-r48zlf p.framer-text,
+#hero .framer-r48zlf .framer-text,
+#hero .framer-r48zlf p,
+#hero .framer-r48zlf span {
+  --extracted-r6o4lv: rgba(255, 255, 255, 0.58) !important;
+  --variable-reference-Dh_X3w3jZ-m54zGBZ4w: rgba(255, 255, 255, 0.58) !important;
+  --framer-text-color: rgba(255, 255, 255, 0.58) !important;
+  color: rgba(255, 255, 255, 0.58) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-grain-blob-wrap,
+  .hero-grain-noise {
+    animation: none;
+  }
+
+  .hero-grain-blob {
+    transition: none;
+  }
+}

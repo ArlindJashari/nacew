@@ -308,73 +308,6 @@
   }
 }
 
-/* ---- Hero intro — scrolls with hero, same 1080px container as nav ---- */
-.hh-intro {
-  position: absolute;
-  top: 34%;
-  left: 0;
-  right: 0;
-  z-index: 3;
-  display: flex;
-  justify-content: center;
-  padding: 0 40px;
-}
-
-.hh-intro-inner {
-  width: 100%;
-  max-width: 1080px;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 32px;
-}
-
-.hh-meta-left {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  flex: 1 0 0;
-  min-width: 0;
-  font-family: var(--f-reg);
-  font-size: 13px;
-  letter-spacing: -0.1px;
-  color: var(--t-60);
-}
-
-.hh-dot {
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: var(--t-40);
-  flex-shrink: 0;
-}
-
-.hh-intro-right {
-  flex: none;
-  max-width: 340px;
-}
-
-.hh-statement {
-  margin: 0;
-  font-family: var(--f-med);
-  font-weight: 500;
-  font-size: 28px;
-  line-height: 1.18;
-  letter-spacing: -0.6px;
-  color: #fff;
-}
-
-.hh-scroll {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 14px;
-  font-family: var(--f-reg);
-  font-size: 13px;
-  letter-spacing: -0.1px;
-  color: var(--t-60);
-}
-
 /* ---- Giant wordmark anchored to the bottom ---- */
 .hh-wordmark {
   position: relative;
@@ -404,34 +337,6 @@
 }
 
 @media (max-width: 809.98px) {
-  .hh-intro {
-    top: 30%;
-    padding: 0 24px;
-  }
-
-  .hh-intro-inner {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 20px;
-  }
-
-  .hh-meta-left {
-    font-size: 11px;
-  }
-
-  .hh-intro-right {
-    max-width: 240px;
-  }
-
-  .hh-statement {
-    font-size: 20px;
-  }
-
-  .hh-scroll {
-    margin-top: 8px;
-    font-size: 11px;
-  }
-
   .hh-wordmark {
     font-size: 30vw;
     margin-bottom: 8vw;

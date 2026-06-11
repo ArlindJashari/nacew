@@ -61,6 +61,9 @@ if (fs.existsSync(aboutDir)) {
 }
 
 execSync('node scripts/patch-homepage-nav.mjs', { cwd: nacewRoot, stdio: 'inherit' });
+execSync('node scripts/patch-homepage-footer.mjs', { cwd: nacewRoot, stdio: 'inherit' });
+execSync('node scripts/patch-homepage-hero-grain.mjs', { cwd: nacewRoot, stdio: 'inherit' });
+execSync('node scripts/patch-homepage-hero-about-content.mjs', { cwd: nacewRoot, stdio: 'inherit' });
 execSync('node scripts/patch-homepage-contact.mjs', { cwd: nacewRoot, stdio: 'inherit' });
 execSync('node scripts/guard-homepage-dist.mjs', { cwd: nacewRoot, stdio: 'inherit' });
 
@@ -97,6 +100,20 @@ fs.writeFileSync(
   path.join(webRoot, 'serve.json'),
   `${JSON.stringify(
     {
+      headers: [
+        {
+          source: '/assets/**',
+          headers: [{ key: 'Cache-Control', value: 'no-store, no-cache, must-revalidate' }],
+        },
+        {
+          source: '/index.html',
+          headers: [{ key: 'Cache-Control', value: 'no-store' }],
+        },
+        {
+          source: '/',
+          headers: [{ key: 'Cache-Control', value: 'no-store' }],
+        },
+      ],
       redirects: [
         { source: '/about2', destination: '/about/', type: 301 },
         { source: '/about2/**', destination: '/about/', type: 301 },
