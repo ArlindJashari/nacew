@@ -1,6 +1,7 @@
 import "./FAQ.css";
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
+import { openContactModal } from "../../../contact-modal.js";
 import { GlowFrame } from "../components/GlowFrame";
 import { FAQ_CATEGORIES, FAQ_ITEMS, type FaqCategory } from "./faqData";
 
@@ -89,9 +90,9 @@ export function FAQ() {
                     Can&apos;t find what you&apos;re looking for? Reach out,
                     we&apos;re fast.
                   </p>
-                  <a className="faq-aside-link" href="mailto:contact@nacew.com">
+                  <button type="button" className="faq-aside-link" onClick={() => openContactModal()}>
                     Email us &rarr;
-                  </a>
+                  </button>
                 </div>
               </GlowFrame>
             </div>

@@ -214,6 +214,10 @@
 
 .faq-aside-link {
   margin-top: 4px;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
   font-family: var(--f-inter, "Inter", sans-serif);
   font-size: 14px;
   font-weight: 500;

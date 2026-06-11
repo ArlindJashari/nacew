@@ -4,7 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "node scripts/dev-site.mjs",
+    "dev:src": "vite",
     "dev:about": "vite --config vite.about.config.js",
     "dev:site": "node scripts/dev-site.mjs",
     "build": "npm run build:web",

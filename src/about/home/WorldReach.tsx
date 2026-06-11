@@ -151,7 +151,7 @@ export function WorldReach() {
   }, []);
 
   return (
-    <section className="reach" id="reach">
+    <section className="reach" id="reach" data-nav-theme="dark">
       <div className="reach-inner">
         <div className="reach-globe">
           <canvas ref={canvasRef} className="reach-canvas" aria-hidden />

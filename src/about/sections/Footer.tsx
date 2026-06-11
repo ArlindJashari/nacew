@@ -1,5 +1,6 @@
 import "./Footer.css";
 import { FOOTER_LINKS, FOOTER_SOCIAL } from "../data";
+import ContactTrigger from "../../components/ContactTrigger";
 
 const SOCIAL_ICONS = {
   linkedin: (
@@ -54,11 +55,17 @@ export function Footer() {
 
       <div className="branch-footer-links">
         <nav className="branch-footer-colnav" aria-label="Footer">
-          {FOOTER_LINKS.map((link) => (
-            <a key={link.label} href={link.href} className="branch-footer-link">
-              {link.label}
-            </a>
-          ))}
+          {FOOTER_LINKS.map((link) =>
+            link.label === "Contact" ? (
+              <ContactTrigger key={link.label} as="a" className="branch-footer-link">
+                {link.label}
+              </ContactTrigger>
+            ) : (
+              <a key={link.label} href={link.href} className="branch-footer-link">
+                {link.label}
+              </a>
+            ),
+          )}
         </nav>
         <div className="branch-footer-social">
           {FOOTER_SOCIAL.map(({ label, href, icon }) => (
@@ -79,9 +86,9 @@ export function Footer() {
       <div className="branch-footer-bottom">
         <div>© 2026 Nacew. All rights reserved</div>
         <nav className="branch-footer-nav">
-          <a href="mailto:contact@nacew.com" aria-label="Contact Nacew" className="branch-footer-link">
+          <ContactTrigger as="a" aria-label="Contact Nacew" className="branch-footer-link">
             Contact
-          </a>
+          </ContactTrigger>
         </nav>
       </div>
     </footer>
