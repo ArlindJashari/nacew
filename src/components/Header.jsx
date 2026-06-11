@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Header.css';
 
 const NAV_LINKS = [
@@ -324,10 +324,9 @@ function MobileHeader({ isDarkSection, mobileOpen, setMobileOpen, scrollBackdrop
 }
 
 export default function Header() {
-  const { pathname } = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrollBackdropOpacity, setScrollBackdropOpacity] = useState(0);
-  const isDarkSection = pathname === '/about' || scrollBackdropOpacity > 0.32;
+  const isDarkSection = scrollBackdropOpacity > 0.32;
 
   useEffect(() => {
     let frame = null;

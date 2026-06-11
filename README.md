@@ -1,31 +1,26 @@
 # Nacew
 
-Single-site React + Vite app for [nacew.com](https://nacew.com).
+Production site: frozen Netlify homepage at `/`, React about page at `/about/`.
 
-| Route | Page |
-|-------|------|
-| `/` | Homepage (Framer-export React components) |
-| `/about` | About experience (`src/about/`) |
-| `/3dlogo`, `/road` | Internal demos |
+| Path | Source |
+|------|--------|
+| `/` | `homepage-dist/` (matches [Netlify](https://fantastic-khapse-ef480d.netlify.app/)) |
+| `/about/` | `src/about/` → `vite.about.config.js` → `../Nacew : WEb/about/` |
 
-Homepage sections live in [`src/components`](src/components). About sections live in [`src/about/`](src/about/) with shared blocks in [`shared/about-sections/`](shared/about-sections/).
-
-## Local dev
+## Commands
 
 ```bash
-npm run dev:site   # http://localhost:8000 — same homepage as Netlify (homepage-dist)
-npm run dev        # http://localhost:5180 — React source (edit about / app code)
-npm run build:web  # sync homepage-dist + /about build → ../Nacew : WEb/
-npm run build:about # build /about only
-npm run lint       # ESLint
+npm run dev:site    # http://localhost:8000 — production mirror (homepage + /about)
+npm run dev         # http://localhost:5180 — homepage React source (editing)
+npm run dev:about   # Vite dev server for /about source
+npm run build       # sync homepage-dist + build /about → ../Nacew : WEb/
+npm run lint
 ```
 
-From `Nacew : WEb`, `npm run dev` runs `dev:site` (Netlify-matching static site).
+From `Nacew : WEb`, `npm run dev` runs `dev:site`.
 
-**Homepage source of truth:** `homepage-dist/` — frozen bundle matching [Netlify](https://fantastic-khapse-ef480d.netlify.app/) (`index-C58hJQyr.js`). Do **not** overwrite with `vite build` output. `npm run build:web` copies `homepage-dist/` then builds `/about`.
+## Deploy
 
-**About:** `src/about/` → built to `WEb/about/` via `vite.about.config.js` (`about-public/` assets only).
+`npm run build` copies `homepage-dist/` into `Nacew : WEb/`, then builds `/about`. `sync-web.mjs` enforces the Netlify homepage bundle (`index-C58hJQyr.js`) — never deploy `dist/`.
 
-**`/about2`:** legacy bookmark path only — `_redirects` + `serve.json` send it to `/about/`. No `about2` app or folder.
-
-**Never deploy `dist/`:** unified `npm run build:app` is for source preview only. `npm run build` runs `build:web` (homepage guard enforces `index-C58hJQyr.js`).
+Legacy `/about2` redirects to `/about/` via `_redirects` and `serve.json`.
