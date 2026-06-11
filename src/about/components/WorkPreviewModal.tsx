@@ -190,8 +190,8 @@ export function WorkPreviewModal({
           className="wpm-spotlight"
           radius="24px"
           innerRadius="23px"
-          background="rgba(18, 24, 32, 0.1)"
-          innerBackground="rgba(255, 255, 255, 0.92)"
+          background="#ffffff"
+          innerBackground="#ffffff"
           proximity={300}
           glowColor={[18, 24, 32, 0.08]}
         >
