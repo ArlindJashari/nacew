@@ -3,7 +3,7 @@ import { FOUNDER_COVER, CLIRIM_SIGNATURE } from "../assets";
 
 export function FounderLetter() {
   return (
-    <div className="ph-letter">
+    <div className="ph-letter" id="letter">
       <div className="ph-letter-inner">
         <figure className="ph-letter-hero">
           <img

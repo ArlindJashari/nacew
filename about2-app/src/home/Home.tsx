@@ -28,19 +28,22 @@ export function Home() {
           </div>
         </div>
 
-        <p className="hh-statement">
-          Design for teams who want to build a better version of their product.
-        </p>
-
-        <div className="hh-meta">
-          <span className="hh-meta-left">
-            Global product design studio
-            <span className="hh-dot" aria-hidden />
-            {time} Gjilan, Kosovo
-          </span>
-          <span className="hh-scroll">
-            Scroll to explore <span aria-hidden>↓</span>
-          </span>
+        <div className="hh-intro">
+          <div className="hh-intro-inner">
+            <span className="hh-meta-left">
+              Global product building studio
+              <span className="hh-dot" aria-hidden />
+              {time} Gjilan, Kosovo
+            </span>
+            <div className="hh-intro-right">
+              <p className="hh-statement">
+                Design for teams who want to build a better version of their product.
+              </p>
+              <span className="hh-scroll">
+                Scroll to explore <span aria-hidden>↓</span>
+              </span>
+            </div>
+          </div>
         </div>
 
         <h1 className="hh-wordmark">nacew</h1>

@@ -4,7 +4,7 @@ const SIGNUP_URL = "https://auth.nacew.com/signup";
 
 export function StartCta() {
   return (
-    <section className="branch-install-section">
+    <section className="branch-install-section" id="start">
       <div className="branch-install-container">
         <h2 className="branch-install-heading">
           Start
