@@ -1,0 +1,26 @@
+/* Bento enter — backdrop only; section keeps normal layout + scroll-driven scale */
+.bento-enter-backdrop {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  pointer-events: none;
+  z-index: 4;
+}
+
+#why-nacew.bento-section {
+  position: relative;
+  z-index: 5;
+  transform-origin: 50% 42%;
+}
+
+/* Page sections above enter backdrops stay visible */
+.framer-kj696b > :not(.bento-enter-backdrop):not(.testi-enter-backdrop):not(#why-nacew) {
+  position: relative;
+  z-index: 6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bento-enter-backdrop {
+    display: none;
+  }
+}

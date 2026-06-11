@@ -64,7 +64,10 @@ execSync('node scripts/patch-homepage-nav.mjs', { cwd: nacewRoot, stdio: 'inheri
 execSync('node scripts/patch-homepage-footer.mjs', { cwd: nacewRoot, stdio: 'inherit' });
 execSync('node scripts/patch-homepage-hero-grain.mjs', { cwd: nacewRoot, stdio: 'inherit' });
 execSync('node scripts/patch-homepage-hero-about-content.mjs', { cwd: nacewRoot, stdio: 'inherit' });
+execSync('node scripts/patch-homepage-progressive-blur.mjs', { cwd: nacewRoot, stdio: 'inherit' });
 execSync('node scripts/patch-homepage-contact.mjs', { cwd: nacewRoot, stdio: 'inherit' });
+execSync('node scripts/patch-homepage-bento-stage.mjs', { cwd: nacewRoot, stdio: 'inherit' });
+execSync('node scripts/patch-homepage-testi-stage.mjs', { cwd: nacewRoot, stdio: 'inherit' });
 execSync('node scripts/guard-homepage-dist.mjs', { cwd: nacewRoot, stdio: 'inherit' });
 
 // NEVER rsync dist/ here — only the frozen Netlify homepage bundle.

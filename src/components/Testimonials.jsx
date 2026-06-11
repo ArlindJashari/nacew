@@ -1,7 +1,7 @@
-import { useRef } from 'react';
+import { Fragment, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { SectionShell } from './primitives';
 import './Testimonials.css';
+import '../../scripts/testimonials/testi-stage-enter.css';
 
 const TESTIMONIALS = [
   {
@@ -43,8 +43,6 @@ const TESTIMONIALS = [
 ];
 
 function TestimonialCard({ data, index, total, progress }) {
-  // Each card scales down slightly as the next one rises over it, building a
-  // layered stack. Later cards target a smaller final scale.
   const targetScale = 1 - (total - 1 - index) * 0.05;
   const scale = useTransform(progress, [index / total, 1], [1, targetScale]);
 
@@ -73,34 +71,66 @@ function TestimonialCard({ data, index, total, progress }) {
 }
 
 export default function Testimonials() {
-  const containerRef = useRef(null);
+  const sectionRef = useRef(null);
+  const stackRef = useRef(null);
+  const { scrollYProgress: enterProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start end', 'start -35%'],
+  });
   const { scrollYProgress } = useScroll({
-    target: containerRef,
+    target: stackRef,
     offset: ['start start', 'end end'],
   });
 
-  return (
-    <SectionShell className="testi-section" data-framer-name="Testimonials" id="testimonials">
-      <div className="testi-head">
-        <p className="testi-eyebrow">Owned, not rented</p>
-        <h2 className="testi-title">
-          Teams that stopped
-          <br />
-          paying rent on software
-        </h2>
-      </div>
+  const stageScale = useTransform(enterProgress, [0, 0.55, 1], [0.84, 0.96, 1]);
+  const stageRadius = useTransform(enterProgress, [0, 0.72, 1], [52, 16, 0]);
+  const stageRadiusPx = useTransform(stageRadius, (v) => `${v}px`);
+  const stageShadow = useTransform(
+    enterProgress,
+    [0, 0.45, 1],
+    [
+      '0 40px 100px rgba(0, 0, 0, 0.55)',
+      '0 24px 64px rgba(0, 0, 0, 0.2)',
+      '0 0 0 rgba(0, 0, 0, 0)',
+    ],
+  );
+  const backdropOpacity = useTransform(enterProgress, [0, 0.04, 0.96, 1], [0, 1, 1, 0]);
 
-      <div className="testi-stack" ref={containerRef}>
-        {TESTIMONIALS.map((data, index) => (
-          <TestimonialCard
-            key={data.name}
-            data={data}
-            index={index}
-            total={TESTIMONIALS.length}
-            progress={scrollYProgress}
-          />
-        ))}
-      </div>
-    </SectionShell>
+  return (
+    <Fragment>
+      <motion.div className="testi-enter-backdrop" style={{ opacity: backdropOpacity }} aria-hidden />
+      <motion.section
+        ref={sectionRef}
+        className="testi-section"
+        id="testimonials"
+        data-framer-name="Testimonials"
+        style={{
+          scale: stageScale,
+          borderRadius: stageRadiusPx,
+          boxShadow: stageShadow,
+          transformOrigin: '50% 42%',
+        }}
+      >
+        <div className="testi-head">
+          <p className="testi-eyebrow">Owned, not rented</p>
+          <h2 className="testi-title">
+            Teams that stopped
+            <br />
+            paying rent on software
+          </h2>
+        </div>
+        <div className="testi-stack" ref={stackRef}>
+          {TESTIMONIALS.map((data, index) => (
+            <TestimonialCard
+              key={data.name}
+              data={data}
+              index={index}
+              total={TESTIMONIALS.length}
+              progress={scrollYProgress}
+            />
+          ))}
+        </div>
+      </motion.section>
+    </Fragment>
   );
 }

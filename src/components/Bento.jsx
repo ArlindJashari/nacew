@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { Fragment, useEffect, useRef, useState } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import {
   Command,
   SlidersHorizontal,
@@ -15,6 +15,7 @@ import {
   Globe,
 } from 'lucide-react';
 import './Bento.css';
+import '../../scripts/bento/bento-stage-enter.css';
 
 const ease = [0.16, 1, 0.3, 1];
 
@@ -395,8 +396,40 @@ function AutoMockup() {
 
 /* ---------- Section ---------- */
 export default function Bento() {
+  const sectionRef = useRef(null);
+  const { scrollYProgress: enterProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start end', 'start 0.1'],
+  });
+
+  const stageScale = useTransform(enterProgress, [0, 0.55, 1], [0.84, 0.96, 1]);
+  const stageRadius = useTransform(enterProgress, [0, 0.72, 1], [52, 16, 0]);
+  const stageRadiusPx = useTransform(stageRadius, (v) => `${v}px`);
+  const stageShadow = useTransform(
+    enterProgress,
+    [0, 0.45, 1],
+    [
+      '0 40px 100px rgba(0, 0, 0, 0.55)',
+      '0 24px 64px rgba(0, 0, 0, 0.2)',
+      '0 0 0 rgba(0, 0, 0, 0)',
+    ],
+  );
+  const backdropOpacity = useTransform(enterProgress, [0, 0.04, 0.96, 1], [0, 1, 1, 0]);
+
   return (
-    <section className="bento-section" id="why-nacew">
+    <Fragment>
+      <motion.div className="bento-enter-backdrop" style={{ opacity: backdropOpacity }} aria-hidden />
+      <motion.section
+        ref={sectionRef}
+        className="bento-section"
+        id="why-nacew"
+        style={{
+          scale: stageScale,
+          borderRadius: stageRadiusPx,
+          boxShadow: stageShadow,
+          transformOrigin: '50% 42%',
+        }}
+      >
       <div className="bento-masonry">
         <div className="bento-col bento-col-left">
           <Block
@@ -461,6 +494,7 @@ export default function Bento() {
         <img className="bento-end-art-cursor-soft" src="/bento-section-end.svg" alt="" />
         <img className="bento-end-art-cursor" src="/bento-section-end.svg" alt="" />
       </div>
-    </section>
+    </motion.section>
+    </Fragment>
   );
 }
