@@ -91,7 +91,7 @@ export function Testimonials() {
               boxShadow: stageShadow,
             }}
           />
-          <div className="testi-head">
+          <div className="testi-head" data-nav-theme="light">
             <p className="testi-eyebrow">Owned, not rented</p>
             <h2 className="testi-title">
               Teams that stopped
@@ -99,7 +99,7 @@ export function Testimonials() {
               paying rent on software
             </h2>
           </div>
-          <div className="testi-stack">
+          <div className="testi-stack" data-nav-theme="dark">
             {TESTIMONIALS.map((item, index) => (
               <TestimonialCard
                 key={item.name}

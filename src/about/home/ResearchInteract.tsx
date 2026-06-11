@@ -197,7 +197,7 @@ export function ResearchInteract() {
   const [threadHover, setThreadHover] = useState<"r1" | "r2" | null>(null);
 
   return (
-    <section className="ri" id="research">
+    <section className="ri" id="research" data-nav-theme="dark">
       {/* ---- Lead + boxed question (matches Midu layout) ---- */}
       <div className="ri-lead">
         <h2 className="ri-lead-text">

@@ -269,6 +269,7 @@ export function TheShift() {
     <section
       className="shift"
       id="what-you-get"
+      data-nav-theme="dark"
       ref={sectionRef}
       style={{ "--shift-runway": PANELS.length } as CSSProperties}
     >

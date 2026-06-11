@@ -1,5 +1,6 @@
 import "./HomeHero.css";
 import { ProgressiveBlur } from "../components/ProgressiveBlur";
+import { ContactModalProvider } from "../../components/ContactModal";
 import { Nav } from "../sections/Nav";
 import { useClock } from "../hooks";
 import { ResearchInteract } from "./ResearchInteract";
@@ -14,10 +15,11 @@ export function Home() {
   const time = useClock("Europe/Belgrade");
 
   return (
+    <ContactModalProvider>
     <>
       <ProgressiveBlur heroId="home" edge="bottom" height={100} />
       <Nav />
-      <section className="hh" id="home">
+      <section className="hh" id="home" data-nav-theme="dark">
         <div className="hh-grain" aria-hidden>
           <div className="hh-grain-blob-wrap">
             <div className="hh-grain-blob hh-grain-blob--purple" />
@@ -37,7 +39,7 @@ export function Home() {
             </span>
             <div className="hh-intro-right">
               <p className="hh-statement">
-                Design for teams who want to build a better version of their product.
+                Product building for teams who want to ship a better version of their product.
               </p>
               <span className="hh-scroll">
                 Scroll to explore <span aria-hidden>↓</span>
@@ -57,5 +59,6 @@ export function Home() {
       <StartCta />
       <Footer />
     </>
+    </ContactModalProvider>
   );
 }

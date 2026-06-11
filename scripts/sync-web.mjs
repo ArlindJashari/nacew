@@ -20,6 +20,8 @@ if (!fs.existsSync(homepageDist)) {
   process.exit(1);
 }
 
+execSync('node scripts/guard-homepage-dist.mjs', { cwd: nacewRoot, stdio: 'inherit' });
+
 function assertNetlifyHomepage(targetRoot) {
   const indexPath = path.join(targetRoot, 'index.html');
   const html = fs.readFileSync(indexPath, 'utf8');
@@ -59,6 +61,8 @@ if (fs.existsSync(aboutDir)) {
 }
 
 execSync('node scripts/patch-homepage-nav.mjs', { cwd: nacewRoot, stdio: 'inherit' });
+execSync('node scripts/patch-homepage-contact.mjs', { cwd: nacewRoot, stdio: 'inherit' });
+execSync('node scripts/guard-homepage-dist.mjs', { cwd: nacewRoot, stdio: 'inherit' });
 
 // NEVER rsync dist/ here — only the frozen Netlify homepage bundle.
 execSync(`rsync -a --delete "${homepageDist}/" "${webRoot}/"`, { stdio: 'inherit' });

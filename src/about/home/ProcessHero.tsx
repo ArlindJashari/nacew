@@ -357,9 +357,10 @@ function ProcessPhase({
   );
 
   return (
-    <div className="ph-block" ref={blockRef}>
+    <div className="ph-block" ref={blockRef} data-nav-theme="dark">
       <motion.div
         className="ph-stage"
+        data-nav-theme="light"
         style={{
           scale: stageScale,
           borderRadius: stageRadiusPx,
@@ -430,7 +431,7 @@ export function ProcessHero() {
   return (
     <section className="ph" id="process">
       <ProcessPhase blockRef={blockRef} onOpenWork={openWork} enterProgress={enterProgress} />
-      <div className="ph-tail">
+      <div className="ph-tail" data-nav-theme="light">
         <FounderLetter />
       </div>
       <AnimatePresence>
